@@ -1,0 +1,341 @@
+.body {
+    /* margin: 0; */
+    background-color: #FFFFFF;
+    width: 100vw;
+    height: auto;
+    color: #333;
+    display: flex;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+.bg {
+    background-color: #FFFFFF;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content {
+    height: auto;
+    width: 100vw;
+    display: flex;
+    margin-top: 10vh;
+    position: relative;
+}
+
+nav {
+    background-color: #FFFFFF;
+    height: 10vh;
+    width: 100vw;
+    border-bottom: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: fixed;
+}
+
+.side {
+    background-color: #F5F0F0;
+    height: 90vh;
+    width: 15vw;
+    /* font-family: Montserrat; */
+    position: fixed;
+}
+
+.main{
+    background-color: #FFF;
+    margin-left: 15vw;
+    width: 60vw;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-X: hidden;
+}
+
+.logo {
+    margin-left: 2vw;
+    width: 11vw;
+}
+
+.profile-side {
+    /* font-family: Montserrat; */
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 20px;
+}
+
+.profile-side img {
+    padding: 2vh;
+    
+}
+
+.deskripsi {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: rgba(51, 51, 51, 0.80);
+    text-align: center;
+    /* font-family: Montserrat; */
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.folls {
+    border-radius: 20px;
+    background: #7c330965;
+    display: flex;
+    color: #FFFFFF;
+    width: 13vw;
+    height: auto;
+    padding: 0.5vw;
+    margin-bottom: 0.5vh;
+    /* padding-bottom: 4vh; */
+}
+
+.p1 {
+    padding-right: 3.3vw;
+}
+
+.side-menu li {
+    background-color: #FFFFFF;
+    height: 5vh;
+    margin-top: 2.5vh;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    border-radius: 10px;
+    text-align: center;
+    /* padding-top: 0.8vh; */
+    align-items: center;
+    display: flex;
+    padding: 1vw;
+}
+
+.side-menu .icon-side {
+    margin-right: 0.5vw;
+    font-size: 25px;
+}
+
+.posting{
+    background-color: #F5F0F0;
+    width: 56vw;
+    height: 20vh;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    border-radius: 10px;
+    padding-top: 1vh ;
+    padding-left: 1vw;
+}
+
+.inputpost {
+    background-color: #FFF;
+    width: 53vw;
+    height: 5vh;
+    margin-bottom: 2vh;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.iconpost {
+    margin-right: 1vw;
+    margin-left: 1vw;
+    font-size: 1.5vw;
+}
+
+.posting input {
+    background-color: #FFF;
+    width: 53vw;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 4vh;
+}
+
+.posting button{
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+    margin-right: 4vh;
+    float: right;
+}
+
+.posting span {
+    color: rgba(51, 51, 51, 0.70);
+    /* font-family: Montserrat; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px; /* 208.333% */
+    letter-spacing: 0.12px;
+}
+
+.batas {
+    display: flex;
+    align-items: center; /* Posisikan item ke tengah secara vertikal */
+}
+
+.iconbatas {
+    margin: 2vh 2vw;
+    font-size: 2vw;
+    margin-right: 0.5vw; /* Beri margin ke kanan agar ada ruang antara ikon dan garis */
+}
+
+.batas span {
+    font-size: 20px;
+    margin-right: 1vw;
+    font-weight: 400;
+}
+
+.batas hr {
+    height: 2px;
+    color: #F5F0F0;
+    flex: 1;
+    margin-top: 4px;
+    background: #F5F0F0;
+}
+
+.postan{
+    /* background-color: aqua; */
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+
+}
+
+.postan1 {
+    border-width: 2px;
+    border-color: #F5F0F0;
+    width: 16.5vw;
+    height: 44vh;
+    border-radius: 10px;
+    margin-left: 2vw;
+    margin-top: 1vw;
+}
+
+.statistik {
+    /* margin-top: 3vh; */
+    width: 25vw;
+    padding-right: 2vw;
+}
+
+.statistik .icon{
+    font-size: 5vw;
+    margin-right: 0.5vw;
+}
+
+.statistik span {
+    font-size: 2vw;
+}
+
+.statistik-bar {
+    display: flex;
+    align-items: center;
+}
+
+.statistik hr {
+    height: 2px;
+    color: #F5F0F0;
+    background-color: #F5F0F0;
+}
+
+.postan1 .judul {
+    margin-right: 3.5vw;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7C3309;
+}
+
+.deskripsi1 {
+    display: block;
+    width: 15vw;
+    font-size: small;
+    margin-left: 0.5vw;
+    text-align: left;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    padding: 0.5vw;
+}
+
+.cont-gambar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.gambar1-1 {
+    margin: 0.5vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+.gambar1-2 {
+    margin: 0.5vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+    margin-left: 0vw;
+}
+.gambar1-3 {
+    margin: 0.5vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+    
+}
+.gambar1-4 {
+    margin: 0.5vw;
+    margin-left: 0vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+
+.gambar2-1 {
+    margin: 0.5vw;
+    /* margin-left: 0vw; */
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+
+.gambar2-2 {
+    margin: 0.5vw;
+    margin-left: 0vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+
+.gambar2-3 {
+    margin: 0.5vw;
+    /* margin-left: 0vw; */
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+
+.statistik-like span {
+    color: rgba(51, 51, 51, 0.50);
+    /* font-family: Montserrat; */
+    font-size: 14px;
+    /* margin-top: 2vh; */
+}
+
+.statistik-like {
+    margin-top: 1vh;
+}

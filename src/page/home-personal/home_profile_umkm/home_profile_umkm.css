@@ -1,0 +1,31 @@
+.cont-home-profile-umkm {
+    width: 85vw;
+    height: 90vh;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-X: hidden;
+    margin-left: 15vw;
+}
+
+.home-profile-umkm {
+    width: 80.5vw;
+    height: auto;
+    border: 2px solid;
+    margin-left: 2vw;
+    border-radius: 15px;
+}
+
+.profile-akun-home {
+    background-color: aqua;
+    width: 78vw;
+    height: 20vh;
+    margin: 1vw;
+}
+
+.home-profile-umkm .postan {
+    width: 80vw;
+}
+
+.home-profile-umkm .postan .postan1 {
+    width: 17.5vw;
+}

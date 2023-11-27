@@ -1,0 +1,100 @@
+.feeds {
+    width: 48vw;
+    height: auto;
+    background-color: #FFF;
+    position: fixed;
+    top: 50vh;
+    left: 49vw;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 1.5vw;
+}
+
+.feeds-judul {
+    display: flex;
+    align-items: center;
+    width: 45vw;
+}
+
+.feeds-judul span {
+    color: #7C3309;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px; /* 107.143% */
+    letter-spacing: 0.14px;
+    /* text-overflow: ellipsis;
+    overflow: hidden; */
+}
+
+.feeds-icon-exit {
+    margin-left: 29vw;
+}
+
+.deskripsi-feeds {
+    width: 42.5vw;
+    margin-top: 1vh;
+    /* text-align: justify; */
+    overflow: hidden;
+    color: rgba(51, 51, 51, 0.80);
+    text-overflow: ellipsis;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 166.667% */
+    letter-spacing: 0.12px;
+}
+
+.feeds hr {
+    margin-top: 1vh;
+}
+
+.cont-pic {
+    width: 45vw;
+    margin-top: 2vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cont-pic-feeds {
+    margin: 0.5vw;
+    width: 20vw;
+    height: 20vh;
+    background-color: #F5F0F0;
+    border-radius: 5px;
+}
+
+.intr-feeds {
+    margin: 1vw;
+}
+
+.intr-feeds span {
+    margin-right: 2vw;
+}
+
+.edit-feeds {
+    display: flex;
+    margin-top: 1vh;
+}
+
+.ubah-feeds {
+    width: 21vw;
+    /* height: 3vh; */
+    border: 0.2vw solid #7C3309;
+    padding: 0.5vw;
+    margin-right: 3vw;
+    border-radius: 30px;
+    color: #333333;
+    text-align: center;
+}
+
+.hapus-feeds {
+    width: 21vw;
+    /* height: 3vh; */
+    padding: 0.5vw;
+    background-color: #333333;
+    border: 0.2vw solid #333333;
+    border-radius: 30px;
+    color: #FFF;
+    text-align: center;
+}

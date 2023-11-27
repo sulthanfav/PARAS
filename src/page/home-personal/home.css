@@ -1,0 +1,163 @@
+.cont-home {
+    width: 85vw;
+    height: 90vh;
+    margin-left: 15vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-X: hidden;
+}
+
+.batas-home {
+    width: 85vw;
+    display: flex;
+    align-items: center;
+}
+
+.batas-home span{
+    margin-right: 1vw;
+}
+
+.batas-home hr {
+    height: 2px;
+    color: #F5F0F0;
+    flex: 1;
+    margin-top: 4px;
+    background: #F5F0F0;
+}
+
+.batas-home input {
+    margin-right:2vw;
+    width: 30vw;
+    height: 6vh;
+    border-radius: 30px;
+    background-color: #FFF;
+    border: 2px solid #7C3309;
+    padding-left: 2vw;
+}
+
+.batas-home .hr-home {
+    margin-right: 2vw;
+}
+
+.img-profile-post-home {
+    width: 5vw;
+    height: 10vh;
+    border-radius: 50%; /* Menggunakan 50% untuk bentuk bulat */
+    overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari batas bulat */
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-profile-post-home {
+    margin-right: 1vw;
+}
+
+.img-profile-post-home img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menyesuaikan gambar ke dalam dimensi elemen tanpa merubah rasio aspek */
+    border-radius: inherit;
+    
+}
+
+.profile-post-home {
+    /* margin: 2vw;
+    border: 2px solid #F5F0F0; */
+    display: flex;
+    /* padding: 1vw; */
+    border-radius: 10px;
+}
+
+.cont-post-home {
+    width: 85vw;
+    height: 90vh;
+    /* background-color: #7C3309; */
+}
+
+.name-profile-post-home {
+    display: grid;
+    width: 84vw;
+    align-content: center;
+}
+
+.name-profile-post-home .name {
+    color: #333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.name-profile-post-home .judul {
+    overflow: hidden;
+    color: var(--Merah-Bata, #7C3309);
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.14px;
+}
+
+.post-home {
+    margin: 2vw;
+    border: 2px solid #F5F0F0;
+    padding: 1vw;
+    border-radius: 10px;
+}
+
+.desc-post-home {
+    margin-top: 1vh;
+}
+
+.pic-post-home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.pic-post {
+    margin: 0.5vw;
+    background-color: #F5F0F0;
+    width: 38.5vw;
+    height: 25vh;
+    border-radius: 4px;
+}
+
+.post-home hr{
+    margin: 2vh;
+    height: 2px;
+    color: rgba(51, 51, 51, 0.10);
+    /* margin-top: 4px; */
+    background-color: rgba(51, 51, 51, 0.10);
+}
+
+.intr-home {
+    display: flex;
+    margin: 1vw;
+    align-items: center;
+}
+
+.intr-home span {
+    margin-right: 2vw;
+}
+
+.intr-home-comment {
+    display: flex;
+    width: 62vw;
+    height: 5vh;
+    border: 2px #333 solid;
+    align-items: center;
+    padding: 1vw;
+    border-radius: 20px;
+    margin-right: 1vw;  
+}
+
+.intr-home-comment input {
+    width: 62vw;
+    background-color: #FFF;
+}
+
+.intr-home-comment .icon-intr-home {
+    margin-right: 1vw;
+}
