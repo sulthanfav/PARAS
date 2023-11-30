@@ -1,0 +1,661 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+.background-registerUMKM-page-two {
+    background-image: url(src/assets/image/senior-man-shirtless-turban-loincloth-steamed-sticky-rice-with-firewood-stove-according-life-rural-people-copy-space-rural-scene-countryside-thailand-2.png);
+    /* background: linear-gradient(180deg, rgba(17, 109, 110, 0.07) 0%, rgba(182, 108, 86, 0.55) 100%); */
+    background-size: contain; /* Menyertakan seluruh gambar dalam area elemen */
+    background-size: 100% 100%; /*Ukuran 100% x 100% dari area elemen*/
+    margin-top: 0vh;
+    margin-bottom: 0vh;
+    margin-left: 0vh;
+    margin-right: 0vh;
+    height: 105vh;
+    width: 98.89vw;
+}
+
+.navigation-bar-page-two {
+    display: flex;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    height: 6vw;
+    background-color: #FFFFFF;
+}
+
+.registrasipage2UMKM {
+  width: 70vw;
+  height: 80vh;
+  /* background-color: #FFFFFF; */
+  background-color: #F5F0F0;
+  margin-left: 15vw;
+  border-radius: 20px;
+  padding: 2vw;
+}
+
+.box-registrasi-UMKM-page-two {
+  height: 120vh;
+  width: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 0vh;
+  margin-left: 4vw;
+}
+
+.box-registrasi-UMKM-page-two img {
+  position: relative;
+  align-items: center;
+  width: 70vw;
+  height: 110vh;
+  align-self: center;
+  margin-top: -8vh;
+  margin-left: 0vw;
+}
+
+.headline-text {
+  position: absolute;
+  display: flex;
+  height: 10vh;
+  width: 70vw;
+  margin-top: 12vh; /* Posisikan elemen .headline-text di 23vh dari atas */
+  margin-left: 8vw; /* Posisikan elemen .headline-text di sisi kiri .box-registrasi */
+  transform: translate(0%, 0%); /* Geser elemen .headline-text ke tengah menggunakan transform */
+  z-index: 2;
+}
+
+.part-one {
+  display: inline-block;
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0.24px;
+  margin-left: 0vw;
+  height: 5vh;
+  width: 8.9vw;
+}
+
+.part-two {
+  color: #7C3309;
+  display: inline-block;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0.24px;
+  margin-left: 0px;
+}
+
+.part-three {
+  color: #333;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: 0.24px;
+}
+
+.guide-text-page-two {
+  position: absolute;
+  color: #333;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0.14px;
+  width: 70vw;
+  height: 5vh;
+  margin-top: 4.5vh; /* Sesuaikan nilai margin-top untuk menyesuaikan dengan posisi dalam .headline-text */
+  margin-left: 0vh;
+}
+
+.box-logo {
+    height: 6.5vh;
+    width: 25vw;
+    margin-left: 1vw;
+    margin-top: 0.75vw;
+}
+
+/* img {
+    height: 5vh;
+    width: 10vw;
+    margin-left: 1vw;
+    margin-top: 0.75vw;
+} */
+
+/* .button-navigation-bar {
+    height: 10vh;
+    width: 25vw;
+    margin-left: 60vw;
+    margin-top: 0vw;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+} */
+
+/* .btn-daftar {
+    --color: #333;
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  } */
+  
+  .btn-daftar::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .btn-daftar:hover {
+    color: white;
+  }
+  
+  .btn-daftar:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  .btn-daftar:hover::before {
+    top: -30px;
+    left: -30px;
+}
+
+  /* .btn-masuk {
+    --color: rgba(51, 51, 51, 0.20);
+    background-color: rgba(109, 108, 108, 0.363);
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    margin-left: 0vh;
+    margin-right: 5vh;
+    font-size: 17px;
+    z-index: 1;
+    color: #1a1a1a;
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+    border-color: #333;
+  } */
+  
+  .btn-masuk::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .btn-masuk:hover {
+    background-color: rgb(117, 117, 117);
+    color: #FFFFFF;
+  }
+  
+  .btn-masuk:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  .btn-masuk:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+
+.button-daftar {
+  /* margin-top: 5vh;
+  display: flex;
+  flex-direction: column; */
+}
+
+.form-regist {
+
+ }
+
+.nomor-kontak-box {
+  width: 70vw;
+  height: 30vh;
+  margin-top: 0vh;
+  margin-left: 0vw;
+  position: absolute;
+  color: rgba(51, 51, 51, 0.70);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 178.571% */
+  letter-spacing: 0.14px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .nama-toko {
+  font-size: 12px;
+} */
+
+.alamat-toko-box {
+  width: 70vw;
+  height: 30vh;
+  margin-top: 11vh;
+  margin-left: 0vw;
+  position: absolute;
+  color: rgba(51, 51, 51, 0.70);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 178.571% */
+  letter-spacing: 0.14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.deskripsi-toko-box {
+  width: 70vw;
+  height: 30vh;
+  margin-top: 22vh;
+  margin-left: 0vw;
+  position: absolute;
+  color: rgba(51, 51, 51, 0.70);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 178.571% */
+  letter-spacing: 0.14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nib-toko-box {
+  width: 70vw;
+  height: 30vh;
+  margin-top: 33vh;
+  margin-left: 0vw;
+  position: absolute;
+  color: rgba(78, 78, 78, 0.7);
+  font-size: 14px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 178.571% */
+  letter-spacing: 0.14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 1px solid var(--putih, #F5F0F0);
+  width: 60vw;
+  height: 5vh;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 20px;
+  transition: all 0.5s;
+  border-color: #cfcfcf;
+  font-size: 14px;
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid var(--putih, #F5F0F0);
+  border-radius: 20px;
+  box-shadow: 0px 0px 0px 7px rgba(224, 134, 74, 0.2);
+  background-color: rgb(245, 244, 244);
+}
+
+.input-nib {
+  font-size: 14px;
+  border: 1px solid var(--putih, #F5F0F0);
+  width: 60vw;
+  height: 5vh;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 20px;
+  transition: all 0.5s;
+  border-color: #cfcfcf;
+  display: block;
+  flex-direction: column;
+}
+
+.input-nib:hover,
+.input-nib:focus {
+  border: 1px solid var(--putih, #F5F0F0);
+  border-radius: 20px;
+  box-shadow: 0px 0px 0px 7px rgba(224, 134, 74, 0.2);
+  background-color: rgb(245, 244, 244);
+}
+
+.btn-buat-akun {
+  --primary-color: #303030;
+  --secondary-color: #fff;
+  --hover-color: #706f6f;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 25px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  font-size: 14px;
+  /* margin-top: 5vh; */
+  margin-left: 50vw;
+  width: 10vw;
+  height: 7vh;
+  position: absolute;
+}
+
+.btn-next-page .arrow-wrapper {
+  display: flex;
+  margin-left: 2.5vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-next-page .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.btn-next-page .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.btn-next-page:hover {
+  background-color: var(--hover-color);
+}
+
+.btn-next-page:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.btn-sign-up:hover .arrow:before {
+  right: 0;
+}
+
+.kategori-toko-box {
+    width: 70vw;
+    height: 30vh;
+    margin-top: 44vh;
+    margin-left: 0vw;
+    position: absolute;
+    color: rgba(78, 78, 78, 0.7);
+    font-size: 14px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; /* 178.571% */
+    letter-spacing: 0.14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-kategori {
+    font-size: 14px;
+    border: 1px solid var(--putih, #F5F0F0);
+    width: 80vw;
+    height: 4vh;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 20px;
+    transition: all 0.5s;
+    border-color: #cfcfcf;
+    display: block;
+    flex-direction: column;
+  }
+  
+  .input-kategori:hover,
+  .input-kategori:focus {
+    border: 1px solid var(--putih, #F5F0F0);
+    border-radius: 20px;
+    box-shadow: 0px 0px 0px 7px rgba(224, 134, 74, 0.2);
+    background-color: rgb(245, 244, 244);
+  }
+
+  .paste-button {
+    position: relative;
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .button {
+    /* background-color: #ffffff;
+    color: rgba(51, 51, 51, 0.50);
+    padding: 1px 15px 1px 15px;
+    font-family: 'Monstserrat', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--putih, #b6b6b6);
+    background: #FFF;
+    width: 20vw;
+    height: 5vh;
+    align-items: center;
+    align-self: center;
+    text-align: left;
+    margin-top: 48vh; */
+  }
+  
+  .dropdown-content {
+    display: none;
+    font-size: 13px;
+    font-family: 'Monstserrat', sans-serif;
+    position: absolute;
+    z-index: 1;
+    min-width: 200px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(121, 121, 121);
+    border-radius: 0px 15px 15px 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: 'Monstserrat', sans-serif;
+    overflow-y: scroll;
+    width: 20vw;
+    max-height: 20vh;
+  }
+
+  .a {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .dropdown-content a {
+    color: rgb(0, 0, 0);
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+    transition: 0.1s;
+    font-family: 'Monstserrat', sans-serif;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgba(218, 216, 216, 0.774);
+    color: #212121;
+    font-family: 'Monstserrat', sans-serif;
+  }
+  
+  .dropdown-content a:focus {
+    background-color: #bdb679;
+    color: #212121;
+    font-family: 'Monstserrat', sans-serif;
+  }
+  
+  .dropdown-content #top:hover {
+    border-radius: 0px 13px 0px 0px;
+  }
+  
+  .dropdown-content #bottom:hover {
+    border-radius: 0px 0px 13px 13px;
+  }
+  
+  .paste-button:hover button {
+    border-radius: 15px 15px 0px 0px;
+  }
+  
+  .paste-button:hover .dropdown-content {
+    display: block;
+  }
+
+.btn-back-page {
+    display: flex;
+    width: 18vw;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 25px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    /* margin-top: 4vh; */
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 20px;
+    border: 1px solid rgba(51, 51, 51, 0.20);
+    background: rgba(51, 51, 51, 0.50);
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 178.571% */
+    letter-spacing: 0.14px;
+    height: 7vh;
+}
+
+.btn-back-page > svg {
+    height: 6vh;
+    margin-right: 1vw;
+    margin-left: 0vw;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+}
+
+.btn-back-page:hover > svg {
+ font-size: 1.2em;
+ transform: translateX(-5px);
+}
+
+.btn-back-page:hover {
+ box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+ transform: translateY(-2px);
+}
+
+.form-regist-page2 {
+  width: 66vw;
+}
+
+.cont-input-form {
+  display: flex;
+  width: 66vw;
+  flex-direction: column;
+  margin-top: 0.5vh;
+}
+
+.cont-input-form-long {
+  margin-top: 0.5vh;
+  display: flex;
+  width: 66vw;
+  flex-direction: column;
+}
+
+.cont-input-form input {
+  margin-top: 0.5vh;
+  padding: 0.5vw;
+  background-color: #FFF;
+  border-radius: 20px;
+  padding-left: 1vw;
+}
+
+.cont-input-form-long input {
+  margin-top: 0.5vh;
+  /* padding: 0.5vw; */
+  background-color: #FFF;
+  border-radius: 20px;
+  padding-left: 1vw;
+  height: 7vh;
+}
+
+.cont-input-form label {
+  font-size: 14px;
+}
+.cont-input-form-long label {
+  font-size: 14px;
+}
+
+.btn-next {
+  display: flex;
+  margin-top: 4vh;
+}
+
+.button-dpdown {
+    background-color: #ffffff;
+    color: rgba(51, 51, 51, 0.50);
+    padding: 1px 15px 1px 15px;
+    font-family: 'Monstserrat', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--putih, #b6b6b6);
+    background: #FFF;
+    width: 20vw;
+    height: 5vh;
+    align-items: center;
+    align-self: center;
+    text-align: left;
+    /* margin-top: 48vh; */
+    
+}

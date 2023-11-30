@@ -1,0 +1,172 @@
+
+
+.titleprofile{
+    display: flex;
+    align-items: center;
+    margin-left: 1vw;
+    width: 75vw;
+}
+
+.logoprofile{
+    margin-right: 0.5vw;
+}
+
+.page-title{
+    width: 110px;
+    color: #333;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: 0.24px;
+}
+
+.line-title{
+    height: 2px;
+}
+
+.rout-disukai{
+    text-decoration: none;
+}
+
+.rowcards{
+    display: flex;
+    margin-bottom: 1vw;
+    margin-left: 1.5vw;
+}
+
+.card01{
+    width: 361px;
+    height: 250px;
+    margin-left: 1vw;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid var(--putih, #F5F0F0);
+    background: #FFF;
+}
+
+.usnrow{
+    display: flex;
+}
+
+.usntoko{
+    display: flex;
+    width: 280px;
+    height: 17px;
+    margin-top: 1vw;
+    margin-left: 1.5vw;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: #333;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px; /* 178.571% */
+    letter-spacing: 0.14px;
+}
+
+.btn-menu{
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    margin-top: 1vw;
+    margin-right: 1vw;
+    margin-left: 2vw;
+}
+
+.judulpost{
+    display: -webkit-box;
+    margin-top: 0.5vw;
+    margin-left: 1.5vw;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    color: var(--Merah-Bata, #7C3309);
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px; /* 150% */
+    letter-spacing: 0.1px;
+}
+
+.contentpost{
+    width: 321px;
+    height: auto;
+    margin-top: 8px;
+    margin-left: 1.5vw;
+    margin-right: 2vw;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    color: rgba(51, 51, 51, 0.80);
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px; /* 150% */
+    letter-spacing: 0.1px;
+    overflow-wrap: break-word;  
+    word-wrap: break-word; 
+    word-break: break-word;
+}
+
+.imagepost{
+    display: flex;
+}
+
+.imagepost-left{
+    padding-top: 0.5vw;
+}
+
+.gambar1{
+    width: 152px;
+    height: 50px;
+    margin-left: 1.5vw;
+    margin-bottom: 7px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: var(--putih, #F5F0F0);  
+}
+
+.imagepost-right{
+    padding-top: 0.5vw;
+    display: flex;
+}
+
+.gambar2{
+    width: 163px;
+    height: 106px;
+    margin-left: 6px;
+    margin-right: 2vw;
+    margin-bottom: 7px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: var(--putih, #F5F0F0);  
+}
+
+.disukai-cont .main .postan{
+    width: 85vw;
+}
+
+.disukai-cont .main {
+    margin-left: 0vw;
+    width: 85vw;
+}
+
+.logo-love-disukai {
+    font-size: 30px;
+    /* margin-right: 1vw; */
+}
+
+.titleprofile hr {
+    height: 2px;
+    color: #F5F0F0;
+    flex: 1;
+    margin-top: 4px;
+    background: #F5F0F0;
+}

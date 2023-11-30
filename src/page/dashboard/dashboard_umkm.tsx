@@ -4,16 +4,27 @@ import './dashboard_umkm.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
+import { account } from '../../api/akun';
 
 const Dashboard: Component = () => {
+
+    const [RowData, setRowData] = createSignal([{}]);
+
+    onMount(async () => {
+      const Account = await account("BERHASIL");
+      console.log("BERHASIL!!", Account);
+      setRowData(Account)
+    })
+  
 
     return (
         <>
         <div class='body'>
             <div class='bg'></div>
+            <A href="/dashboard">
             <nav>
-                    <img class='logo' src="/src/assets/Group_154.png" alt="" />
-            </nav>
+                <img class='logo' src="/src/assets/Group_154.png" alt="" />
+            </nav></A>
             <div class='content'>
 
                 <div class='side'>
@@ -25,15 +36,15 @@ const Dashboard: Component = () => {
                         <span class='deskripsi'>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius</p>
                         </span>
-                        <span class='folls'>
+                        <A href="/folls"><span class='folls'>
                             <p class='p1'>Followers</p>
                             <p>127</p>
-                        </span>
+                        </span></A>
                     </div>
                     <div class='side-menu'>
                         <ul>
                             <a href="#"><li> <Icon icon="ic:round-home" class='icon-side'></Icon>Beranda</li></a>
-                            <a href="#"><li><Icon icon="flat-color-icons:like" class='icon-side'></Icon> Disukai</li></a>
+                            <a href="#"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></a>
                             <a href="#"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></a>
                             <a href="#"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></a>
                             <a href="#"><li><Icon icon="solar:logout-2-bold" class='icon-side'></Icon>Keluar</li></a>

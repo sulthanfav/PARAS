@@ -1,0 +1,10 @@
+.box1{
+    top: 50%;
+    left: 50%;
+    width: 322px;
+    height: 280px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid var(--putih, #F5F0F0);
+    background: #FFF;
+}

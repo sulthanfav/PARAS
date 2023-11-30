@@ -9,9 +9,10 @@ const Folls : Component = () => {
     return (
         <>
         <div class='body'>
+        <A href="/dashboard">
             <nav>
-                    <img class='logo' src="/src/assets/Group_154.png" alt="" />
-            </nav>
+                <img class='logo' src="/src/assets/Group_154.png" alt="" />
+            </nav></A>
             <div class='content'>
 
                 <div class='side'>

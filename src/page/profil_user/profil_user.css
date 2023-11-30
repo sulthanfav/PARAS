@@ -1,0 +1,186 @@
+.bg-all{
+    background: #FFF;
+    margin-left: 15vw;
+    width: 85vw;
+    height: auto;
+}
+
+/* .titleprofile{
+    display: flex;
+} */
+
+.logoprofile{
+
+}
+
+.page-title{
+    width: 110px;
+    color: #333;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: 0.24px;
+}
+
+.line-title{
+    height: 2px;
+}
+
+.bungkus-edit-user{
+    display: flex;
+    width: 136px;
+    height: 37px;
+}
+
+/* .btnedit{
+    width: 136px;
+    border-radius: 0;
+    border-radius: 20px;
+    border: 2px solid rgba(124, 51, 9, 0.30);
+    background: #FFF;
+} */
+
+.editprofile-user{
+    width: 15px;
+    height: 15px;
+    margin-top: 1vh;
+    margin-left: 0vw;
+    flex-shrink: 0;
+}
+
+
+.edit-text{
+
+}
+
+.bodyprofile{
+
+}
+
+.bodyheader-profile{
+    display: flex;
+}
+
+.ava-profile{
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-top: 3vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+}
+
+.nama-usn{
+    margin-top: 3vh;
+    width: 884px;
+    height: 77px;
+    flex-shrink: 0;
+}
+
+.profilename-user{
+    margin-top: 3vh;
+    margin-bottom: 0vh;
+    width: 266px;
+    color: #333;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    /*line-height: 32px; /* 133.333% */
+    letter-spacing: 0.24px;
+}
+
+.line-profile{
+    width: 884px;
+}
+
+.username{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    margin-top: 1vh;
+    overflow: hidden;
+    color: rgba(51, 51, 51, 0.80);
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 0.16px;
+}
+
+.bodycontent-profileuser{
+    width: 998px;
+    height: 107vh;
+    margin-left: 2vw;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid var(--putih, #F5F0F0);
+    background: #FFF;
+}
+
+.bodyform{
+
+}
+
+.form-profile{
+    width: 231px;
+    color: rgba(51, 51, 51, 0.70);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 178.571% */
+    letter-spacing: 0.14px;
+}
+
+.isianprofile{
+    border-radius: 20px;
+    border: 1px solid rgba(124, 51, 9, 0.30);
+    background: #FFF;
+    width: 909px;
+    height: 37px;
+    margin-top: 0.5vw;
+    flex-shrink: 0;
+}
+
+.isianprofile-panjang{
+    border-radius: 20px;
+    border: 1px solid rgba(124, 51, 9, 0.30);
+    background: #FFF;
+    width: 909px;
+    height: 10vh;
+    margin-top: 0.5vw;
+    flex-shrink: 0;
+}
+
+.kategori{
+    font-family: Montserrat;
+    overflow: hidden;
+    color: #333;
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px; /* 107.143% */
+    letter-spacing: 0.14px;
+    }
+
+.ddkategori{
+    border-radius: 20px;
+    border: 1px solid rgba(124, 51, 9, 0.30);
+    background: #FFF;
+    width: 909px;
+    height: 37px;
+    margin-top: 0.5vw;
+    flex-shrink: 0;
+}
+
+.text-ddkategori{
+    margin-top: 3vw;
+}

@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+.navigation-bar {
+    display: flex;
+    margin-left: 0vw;
+    margin-right: 0vw;
+    height: 5vh;
+    background-color: #FFFFFF;
+    width: 100vw;
+}
+
+.container-box {
+    width: 40vw;
+    height: 90vh;
+    /* margin-top: 11vh; */
+    background-color: #F5F0F0;
+}
+
+.box-logo {
+    height: 6.5vh;
+    width: 25vw;
+    margin-left: 1vw;
+    margin-top: 0.75vw;
+}
+
+/* img {
+    height: 5vh;
+    width: 10vw;
+    margin-left: 1vw;
+    margin-top: 0.75vw;
+} */
+
+.button-navigation-bar {
+    height: 10vh;
+    width: 25vw;
+    margin-left: 65vw;
+    margin-top: 0vw;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-daftar {
+    --color: #333;
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 20px;
+    position: relative;
+    margin-top: 2vh;
+  }
+  
+  .btn-daftar::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .btn-daftar:hover {
+    color: white;
+  }
+  
+  .btn-daftar:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  .btn-daftar:hover::before {
+    top: -30px;
+    left: -30px;
+}
+
+  .btn-masuk {
+    --color: rgba(51, 51, 51, 0.20);
+    background-color: rgba(109, 108, 108, 0.363);
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    margin-left: 0vh;
+    margin-right: 5vh;
+    font-size: 17px;
+    z-index: 1;
+    color: #1a1a1a;
+    border: 2px solid var(--color);
+    border-radius: 20px;
+    position: relative;
+    border-color: #333;
+    margin-top: 2vh;
+  }
+  
+  .btn-masuk::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .btn-masuk:hover {
+    background-color: rgb(117, 117, 117);
+    color: #FFFFFF;
+  }
+  
+  .btn-masuk:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  .btn-masuk:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+
+.text-opening {
+  display: inline-block;
+    width: 70vh;
+    align-items: center;
+    margin-top: 6vh;
+    margin-left: 7vw;
+}
+
+.part1 {
+    color: rgba(124, 51, 9, 0.40);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: bolder;
+    line-height: 65px; /* 100% */
+    letter-spacing: 0.65px;
+    width: 50vh;
+    margin-top: 0vh;
+    /* display: flex; */
+    display: inline;
+}
+
+.part2 {
+    color: #333;
+    font-family: Montserrat;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: bolder;
+    line-height: 55px;
+    letter-spacing: 0.65px;
+    display: inline;
+}
+
+.button-daftar {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn.btn-active.btn-neutral {
+    margin-left: 7vw;
+    width: 27vw;
+    font-family: 'Montserrat';
+    border-radius: 30px;
+ }
+
+ .btn.btn-active.btn-neutral:hover {
+    background-color: rgb(192, 192, 192);
+    color: #333333;
+    border-color: #333333;
+  }
+
+.btn.btn-ghost {
+    margin-top: 3vh;
+    margin-left: 7vw;
+    width: 27vw;
+    font-family: 'Montserrat';
+    border-color: #333333;
+    border-radius: 30px;
+ }
+
+ .btn.btn-ghost:hover {
+    background-color: rgb(211, 211, 211);
+    color: #2e2e2e;
+    border-color: #333333;
+    /* display: flex; */
+  }
+
+.text-tagline {
+    margin-top: 5vh;
+    margin-left: 7vw;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: lighter;
+    line-height: 25px; /* 125% */
+    letter-spacing: 0.2px;
+}
+
+.image-side-right {
+    /* margin-top: -82vh; */
+    /* margin-left: 46vw;
+    margin-bottom: 0vh; */
+    width: 60vw;
+    height: 90vh;
+    display: block;
+    float: left;
+}
+
+.image-1 {
+    margin-top: 0vh;
+    height: 55vh;
+    object-fit: cover;
+}
+
+.image-1 img {
+    width: 100%;
+    height: 100%;
+    /* height: fit-content; */
+    /* flex-shrink: 3; */
+    /* background-image: lightgray ('src/assets/image/giving-final-touches-artwork-1.png') 50% / cover no-repeat; */
+    /* display: inline; */
+    /* vertical-align: baseline; */
+    float: left;
+    position: relative;
+    /* background-size: contain; /* Menyertakan seluruh gambar dalam area elemen */
+    /* background-size: 60% 60%; Ukuran 100% x 100% dari area elemen */
+    margin-top: 0vh;
+    margin-left: 0vw;
+    
+}
+
+.image-2 {
+    display: block;
+    flex-direction: column;
+    /* margin-top: 30vh; */
+    /* margin-bottom: 15vh; */
+    width: 60vw;
+    height: 35vh;
+    object-fit: cover;
+}
+
+.image-left {
+    display: inline-block;
+    flex-direction: row;
+    width: 30vw;
+    /* height: fit-content; */
+    flex-shrink: 0;
+    /* background-image: url('src/assets/image/hands-potter-creating-earthen-jar-1.png'), lightgray 50% / cover no-repeat; */
+    margin-top: 0vh;
+    margin-left: 0vw;
+    object-fit: cover;
+    height: 35vh;
+}
+
+.image-left img {
+    display: inline-block;
+    flex-direction: row;
+    width: 30vw;
+    height: fit-content;
+    flex-shrink: 0;
+    height: 100%;
+    /* background-image: url('src/assets/image/hands-potter-creating-earthen-jar-1.png'), lightgray 50% / cover no-repeat; */
+    /* margin-top: -0.2vh;
+    margin-left: 0vw; */
+}
+
+.image-right {
+    display: inline-block;
+    flex-direction: column;
+    width: 30vw;
+    /* height: fit-content; */
+    object-fit: cover;
+    flex-shrink: 0;
+    /* background-image: url('src/assets/image/hands-potter-creating-earthen-jar-1.png'), lightgray 50% / cover no-repeat; */
+    margin-top: 0vh;
+    margin-left: 0vw;
+    height: 100%;
+}
+
+.image-right img {
+    display: inline-block;
+    /* flex-direction: row; */
+    width: 30vw;
+    /* height: fit-content; */
+    flex-shrink: 0;
+    /* background-image: url('src/assets/image/hands-potter-creating-earthen-jar-1.png'), lightgray 50% / cover no-repeat; */
+    margin-top: 0vh;
+    margin-left: 0vw;
+    height: 100%;
+}
+
+.background {
+  width: 100vw;
+  height: 90vh;
+  background-color: #FFF;
+  display: flex;
+}
