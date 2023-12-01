@@ -80,6 +80,7 @@ nav {
     align-items: center;
     justify-content: flex-start;
     font-size: 20px;
+    padding: 0.5vw;
 }
 
 .profile-side img {

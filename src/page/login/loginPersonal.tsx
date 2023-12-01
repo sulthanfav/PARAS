@@ -21,11 +21,14 @@ const loginUMKM: Component = () => {
                     {/* Tombol navigasi */}
                     <div class='button-navigation-bar'>
                         {/* Tombol Daftar */}
-                        <button class='btn-daftar'> Daftar </button>
+                        <A href="/paras">
+                        <div class='btn-daftar'> Daftar </div>
                         {/* Link ke RegisterUMKMPage1 - belum digunakan */}
-                        <a href="/RegisterUMKMPage1"></a>
+                        </A>
+                        <A href="/login">
                         {/* Tombol Masuk */}
-                        <button class='btn-masuk'> Masuk </button>
+                        <div class='btn-masuk'> Masuk </div>
+                        </A>
                     </div>
                 </nav>
                 {/* Konten utama */}
@@ -51,9 +54,11 @@ const loginUMKM: Component = () => {
                                     <label>Nomor Kontak</label>
                                     <input type="text" name="" id="" />
                                 </div>
+                                <A href="/dashboard">
                                 <button>
                                     Masuk
                                 </button>
+                                </A>
                             </div>
                         </div>
                     </div>

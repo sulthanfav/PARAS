@@ -18,7 +18,9 @@ const Paras: Component = () => {
             <div class = 'button-navigation-bar'>
                 <button class = 'btn-daftar'> Daftar </button>
                 <a href="/RegisterUMKMPage1"></a>
+                <A href="/login">
                 <button class = 'btn-masuk'> Masuk </button>
+                </A>
             </div>
         </nav>
         <div class='content'>
@@ -33,8 +35,8 @@ const Paras: Component = () => {
                         </span> 
                     </div>
                     <div class = 'button-daftar'>
-                        <button class="btn btn-active btn-neutral">Daftar sebagai UMKM</button>
-                        <button class="btn btn-ghost">Daftar sebagai User</button>
+                        <A href="/RegisterUMKMPage1"><button class="btn btn-active btn-neutral">Daftar sebagai UMKM</button></A>
+                        <A href="/RegisterPersonalpage1"><button class="btn btn-ghost">Daftar sebagai User</button></A>
                     </div>
                     <div class = 'text-tagline'>
                     Jadikan galeri dagangan Anda di sini, 

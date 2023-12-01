@@ -60,11 +60,13 @@ const RegisterUMKMPage1: Component = () => {
                                             <input class="input-confirm-password" placeholder="(wajib diisi)"></input>
                                         </div>
                                     </div>
+                                    <A href="/RegisterUMKMPage2">
                                     <button class = 'btn-next-page'>Halaman Berikutnya
                                             <div class="arrow-wrapper">
                                                 <div class="arrow"></div>
                                             </div>
                                     </button>
+                                    </A>
                             </div>
                         </div>
                     </div>

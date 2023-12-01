@@ -1,0 +1,249 @@
+.notif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 40px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: Montserrat;
+    max-height: 70vh;
+    max-width: 50vw;
+    overflow-y: auto;
+    overflow-X: hidden;
+    margin-left: 5px;
+  }
+  
+  p{
+    
+      text-align: justify;
+    
+  }
+  
+  .judul {
+    color: var(--Merah-Bata, #7C3309);
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0.14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .icon-close{
+    margin-left: auto;
+  }
+  
+  .deskripsi {
+    overflow: hidden;
+    color: rgba(51, 51, 51, 0.80);
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.12px;
+    flex-grow: 1;
+    word-wrap: break-word;
+    flex-shrink: 0; 
+  }
+  
+  .hr1{
+     
+      height: 0px; /* Sets the height of the line */
+      width: 518px;
+      background-color: rgba(51, 51, 51, 0.10); /* Sets the background color of the line */
+      margin-top: 5px; /* Adds some margin above and below the line */
+      margin-bottom: 20px;
+  }
+  
+  .hr2{
+    height: 0px; /* Sets the height of the line */
+    width: 518px;
+    background-color: rgba(51, 51, 51, 0.10); /* Sets the background color of the line */
+    margin-top: 20px; /* Adds some margin above and below the line */
+    margin-bottom: 20px;
+  }
+  
+  .gambar-container {
+    background-color: white;
+    width: 100%; /* Set 100% untuk mengikuti lebar .notif */
+    max-width: 500px; /* Atur lebar maksimum sesuai kebutuhan */
+    margin: 0 auto; /* Mengatur margin secara otomatis di tengah */
+    display: flex;
+   
+  
+  }
+  
+  .gambar-left {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .gambar-left .left1{
+    width: 18vw; /* Adjust the width as needed */
+    height: 15vh; 
+    background-color: #F5F0F0;
+    margin-bottom: 10px;
+  }
+  
+  .gambar-left .left2{
+    width: 18vw; /* Adjust the width as needed */
+    height: 15vh; 
+    background-color:#F5F0F0; 
+  }
+  
+  .gambar-right{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .gambar-right .right{
+    width: 19.5vw; /* Adjust the width as needed */
+    height: 31.5vh;
+    background-color:#F5F0F0;
+  }
+  
+  .icon-container {
+    display: flex;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 12px;
+    justify-content: space-between;
+  }
+  
+  .love-icon{
+    margin-left: 2px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .love-icon .p{
+    margin-right: 10px;
+  }
+  
+  .icon {
+    cursor: pointer;
+  }
+  
+  .like{
+    display: flex;
+    cursor: pointer;
+
+  }
+
+  
+  .komen{
+    margin-left: 30px;
+    cursor: pointer;
+
+  
+  }
+  
+  .link{
+    color: rgba(37, 92, 173, 0.8);
+    text-decoration: underline;
+    cursor: pointer;
+
+  
+  }
+  
+  a{
+    color: #255CAD;
+  }
+  
+  .comment-container {
+    margin-top: 10px;
+    display: flex;
+    margin-bottom: 0px;
+  }
+  
+  .tika{
+    margin-right: 20px;
+  }
+  
+  .name-personal{
+    display: flex;
+    color: #333;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.14px;
+    vertical-align: middle;
+  }
+  
+  .komen-personal{
+    margin-left: 10px;
+    color: #333;
+    text-overflow: ellipsis;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.12px;
+    margin-top: 2px;
+  }
+  
+  .reply{
+    display: flex;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px; /* 125% */
+    letter-spacing: 0.12px;
+    margin-top: 10px;
+    
+  }
+  
+  .text-reply{
+    color: #7C3309;
+    cursor: pointer;
+
+    
+
+  }
+
+  .waktu{
+    margin-right: 10px;
+  }
+  
+  .container-reply {
+    display: flex; /* Menggunakan flexbox */
+    justify-content: space-between; /* Menempatkan elemen anak pada ruang yang sama di dalam container */
+    align-items: center; /* Menengahkan elemen anak secara vertikal */
+    height: 50px; /* Sesuaikan tinggi container */
+    border-radius: 40px; /* Menentukan radius border untuk menciptakan bentuk lonjong */
+    border: 2px solid #F5F0F0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding: 0 10px; /* Menambahkan padding agar elemen anak tidak terlalu dekat dengan tepi container */
+}
+
+    .reply-image {
+        max-width: auto; /* Pastikan gambar tidak melebihi lebar kontainer */
+        height: 10vh; /* Biarkan tinggi gambar disesuaikan secara otomatis */
+        border-radius: 0px; /* Sesuaikan radius border agar sesuai dengan bentuk lonjong */
+    }
+
+    .reply-text {
+        border: none;
+        outline: none;
+        padding-right: 10vw;
+        margin-bottom: 5px;
+        font-family: Montserrat;
+        font-size: 12px;
+        width: 450px;
+    }
+
+

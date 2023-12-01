@@ -26,6 +26,12 @@ import RegisterPersonalPage1 from '../page/register/registerPersonalpage1';
 import RegisterPersonalPage2 from '../page/register/registerPersonalpage2';
 // import LoginUMKM from '../page/login/loginUMKM';
 import LoginPersonal from '../page/login/loginPersonal';
+import Popup_logout from '../assets/popup/popup_logout/popup_logout';
+import Popup_notif from '../assets/popup/popup_notif/popup_notif';
+import Popup_reply from '../assets/popup/popup_reply/popup_reply';
+import Popup_lagi_reply from '../assets/popup/popup_lagi_reply/popup_lagi_reply';
+import Popup_feeds_disukai from '../assets/popup/popup_feeds_disukai/popup_feeds_disukai';
+import Popup_hapus from '../assets/popup/popup_hapus/popup_hapus';
 
 const pathFn = (e: any) => {
   console.log('pathFn', e);
@@ -40,9 +46,7 @@ const pathFn = (e: any) => {
 const Root: Component = () => {
   return (
     <> 
-    <Router 
-    source={hashIntegration()}
-    >
+    <Router source={hashIntegration()}>
         <Routes>
             <Route path="/" element={ <Navigate href={pathFn}/> } />
             <Route path="/Dashboard" element={ <Dashboard/> } />
@@ -68,7 +72,13 @@ const Root: Component = () => {
             <Route path="/RegisterPersonalPage1" element={ <RegisterPersonalPage1/> } />
             <Route path="/RegisterPersonalPage2" element={ <RegisterPersonalPage2/> } />
             {/* <Route path="/LoginUMKM" element={ <LoginUMKM/> } /> */}
-            <Route path="/LoginPersonal" element={ <LoginPersonal/> } />
+            <Route path="/login" element={ <LoginPersonal/> } />
+            <Route path="/Popup_logout" element={ <Popup_logout/> } />
+            <Route path="/Popup_notif" element={ <Popup_notif/> } />
+            <Route path="/Popup_reply" element={ <Popup_reply/> } />
+            <Route path="/Popup_lagi_reply" element={ <Popup_lagi_reply/> } />
+            <Route path="/Popup_feeds_disukai" element={ <Popup_feeds_disukai/> } />
+            <Route path="/Popup_hapus" element={ <Popup_hapus/> } />
         </Routes>
     </Router>
     </>

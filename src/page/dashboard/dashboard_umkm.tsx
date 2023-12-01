@@ -5,6 +5,8 @@ import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 import { account } from '../../api/akun';
+import Popup_post from './pop_up_post/popup_post';
+// import './Popup_post';
 
 const Dashboard: Component = () => {
 
@@ -15,6 +17,18 @@ const Dashboard: Component = () => {
       console.log("BERHASIL!!", Account);
       setRowData(Account)
     })
+
+    const [Post, setPost] = createSignal(false);
+
+
+    function openPostPostPopUp() {
+        setPost(true);
+    }
+   
+    function closePostPopUp(){
+        setPost(false);
+    }
+
   
 
     return (
@@ -44,9 +58,9 @@ const Dashboard: Component = () => {
                     <div class='side-menu'>
                         <ul>
                             <a href="#"><li> <Icon icon="ic:round-home" class='icon-side'></Icon>Beranda</li></a>
-                            <a href="#"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></a>
-                            <a href="#"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></a>
-                            <a href="#"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></a>
+                            <A href="/notifumkm"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></A>
+                            <A href="/ProfilUMKM"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></A>
+                            <A href="/PengaturanUMKM"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></A>
                             <a href="#"><li><Icon icon="solar:logout-2-bold" class='icon-side'></Icon>Keluar</li></a>
                             {/* <li><a href="#"><Icon icon="solar:logout-2-bold"></Icon>Dashboard</a></li> */}
                         </ul>
@@ -54,7 +68,7 @@ const Dashboard: Component = () => {
                 </div>
 
                 <div class='main'>
-                    <div class="posting">
+                    <div class="posting" onClick={openPostPostPopUp}>
                         <span>Buat Unggahan Baru</span><br />
                         <div class='inputpost'>
                         <Icon  icon="solar:home-add-bold" class='iconpost'></Icon>
@@ -62,6 +76,7 @@ const Dashboard: Component = () => {
                         </div>
                         <button>Unggah</button>
                     </div>
+                    {/* {Post() && <Popup_post onClose={closePostPopUp}/>} */}
                     <div class='batas'>
                         <Icon  icon="mdi:post-it-note-edit" class='iconbatas'></Icon>
                         <span>Unggahan</span>

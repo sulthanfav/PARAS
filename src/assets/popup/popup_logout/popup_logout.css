@@ -1,0 +1,77 @@
+/* popup_logout.css */
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white; 
+    padding: 10px;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Efek bayangan */
+  }
+  
+  .gambar img {
+    width: 20vw; /* Atur lebar gambar sesuai kebutuhan */
+    height: 20vh;
+  }
+  
+  .answer {
+    display: flex;
+    justify-content: space-between; /* Memberi ruang di antara elemen-elemen */
+    margin-top: 10px; /* Atur jarak antara teks dan gambar */
+    width: 100%; /* Agar elemen Iya dan Tidak menempati lebar maksimum */
+    font-size: 14px;
+    font-weight: px;
+  }
+  
+  .iya,
+  .tidak {
+    flex: 1; /* Membuat elemen Iya dan Tidak memiliki lebar yang sama */
+    text-align: center;
+    padding: 5px; /* Menambahkan ruang di dalam container lonjong */
+    margin: 0 5px; /* Memberi jarak di antara elemen Iya dan Tidak */
+    border: 1px solid black; /* Menambahkan border untuk efek pemisah */
+    cursor: pointer; /* Menjadikan pointer saat dihover, memberi indikasi interaktif */
+    border-radius: 20px; /* Memberikan border radius untuk bentuk lonjong pada kedua sisi */
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px; /* 125% */
+    letter-spacing: 0.12px;
+    cursor: pointer;
+  }
+  
+  .iya:hover{
+    background-color: black; /* Memberikan efek ketika dihover */
+    color: white;
+    cursor: pointer;
+
+  }
+
+  .tidak:hover {
+    background-color:white; /* Memberikan efek ketika dihover */
+    color: black;
+    border-color: #7C33094D; /* Mengubah warna border saat dihover */
+    border-radius: 20px; /* Mengubah border-radius saat dihover */
+    cursor: pointer;
+
+  }
+  
+  .validasi {
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 15px; 
+    letter-spacing: 0.14px;
+  }
+  

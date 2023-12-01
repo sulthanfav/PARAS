@@ -63,6 +63,7 @@ const RegisterPersonalPage1: Component = () => {
                                     <input class="input-confirm-password-personal" placeholder="(wajib diisi)"></input>
                                 </div>
                             </div>
+                            <a href=""></a>
                             <button class = 'btn-next-page'>Halaman Berikutnya
                                     <div class="arrow-wrapper">
                                         <div class="arrow"></div>
