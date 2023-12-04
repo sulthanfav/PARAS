@@ -5,14 +5,19 @@ import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 
-const popup_feeds: Component = () => {
+interface PopUpFeedsProps {
+  onClose: () => void,
+}
+
+const Popup_feeds: Component<PopUpFeedsProps> = (props) => {
 
     return (
         <>
+        <div class='overlay'>
         <div class='feeds'>
             <div class='feeds-judul'>
                 <span>Lorem Ipsum Dolor Sit Amet</span>
-                <Icon icon="ep:close-bold" class='feeds-icon-exit'></Icon>
+                <Icon icon="ep:close-bold" class='feeds-icon-exit' onclick={props.onClose}></Icon>
             </div>
             <div class='deskripsi-feeds'>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
@@ -45,7 +50,8 @@ const popup_feeds: Component = () => {
                 </div>
             </div>
         </div>
+        </div>
         </>
         )};
 
-export default popup_feeds;
+export default Popup_feeds;

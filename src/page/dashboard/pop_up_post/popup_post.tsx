@@ -14,8 +14,10 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
 
     return (
         <>
-        <div class='popup-post'>
+        <div class='overlay'>
+            <div class='popup-post' id='post_popup'>
             <span>Buat Unggahan Baru</span>
+            <Icon icon="ep:close-bold" class="feeds-icon-exit" onclick={props.onClose}></Icon>
             <div class='cont-poppost'>
                 <Icon icon="solar:home-add-bold" class='icon-cont-post'></Icon>
                 <div class='post-input'>
@@ -28,13 +30,14 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
             </div>
             <select name="" id="">
                 <option value="">Kategori Anda</option>
-                <option value="">Kategori Anda</option>
+                <option value="">ama</option>
                 <option value="">Kategori Anda</option>
                 <option value="">Kategori Anda</option>
             </select>
                 <Icon icon="mingcute:attachment-line" class='attc-icon'></Icon>
                 <Icon  icon="ph:link-bold" class='link-icon'></Icon>
                 <button>Unggah</button>
+        </div>
         </div>
         </>
 

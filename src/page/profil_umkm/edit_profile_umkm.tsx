@@ -2,18 +2,15 @@ import { Component } from "solid-js";
 import { A } from "@solidjs/router";
 import { Icon } from "@iconify-icon/solid";
 import './profil_umkm.css';
-import '../disukai/disukai.css'
-import '../pengaturan/pengaturan.css'
-import '../profil_user/profil_user.css'
 
 // Fungsi untuk menentukan path
 const pathFn = (e: any) => {
   console.log('pathFn', e);
-  return '/ProfilUMKM';
+  return '/EditProfilUMKM';
 }
 
 // Komponen ProfilUMKM
-const ProfilUMKM: Component = () => {
+const EditProfilUMKM: Component = () => {
   return (
     <>
       <div class='body'>
@@ -57,10 +54,10 @@ const ProfilUMKM: Component = () => {
               <div class='page-title-pengaturan'>Profile</div>
               <hr />
               <div class='bungkus-edit-pengaturan'>
-                <button class="btnedit">
+                <div class="btnedit">
                   <Icon class='editprofile-pengaturan' icon="iconamoon:edit-fill"/>
-                  <A href="/EditProfilUMKM"><span class='btnedit-text'>Ubah Profile </span></A>
-                </button>
+                  <span class='btnedit-text'>Ubah Profile </span>
+                </div>
               </div>
             </div>
 
@@ -79,39 +76,27 @@ const ProfilUMKM: Component = () => {
               <div class='bodycontent-profile'>
                 <div class='bodyform'>
                   <div class='form-profile'>Nama Toko</div>
-                  <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="Numani" class="isianprofile input input-bordered w-full max-w-xs" /></div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>Kategori Usaha</div>
-                  <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="Produk Makanan dan Minuman" class="isianprofile input input-bordered w-full max-w-xs" /></div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>Nomor Kontak</div>
-                  <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="021123456789" class="isianprofile input input-bordered w-full max-w-xs" /></div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>NIB (Nomor Induk Berusaha)</div>
-                                    <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="021123456789" class="isianprofile input input-bordered w-full max-w-xs" /></div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>Deskripsi Toko</div>
-                                    <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue porta purus vitae gravida." class="isianprofile-panjang input input-bordered w-full max-w-xs" /></div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>Alamat Toko</div>
-                  <div class="profile-isi">
-                    <span>asda</span>
-                  </div>
+                  <div><input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue porta purus vitae gravida." class="isianprofile-panjang input input-bordered w-full max-w-xs" /></div>
                 </div>
               </div>
             </div>
@@ -123,4 +108,4 @@ const ProfilUMKM: Component = () => {
   );
 };
 
-export default ProfilUMKM;
+export default EditProfilUMKM;

@@ -4,32 +4,58 @@ import './dashboard_umkm.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
-import { account } from '../../api/akun';
+import { fetchBiodataUmkm, BiodataUmkm } from '../../api/akun';
 import Popup_post from './pop_up_post/popup_post';
+import Popup_feeds from '../pop_up_feeds/popup_feeds';
 // import './Popup_post';
 
 const Dashboard: Component = () => {
-
     const [RowData, setRowData] = createSignal([{}]);
-
-    onMount(async () => {
-      const Account = await account("BERHASIL");
-      console.log("BERHASIL!!", Account);
-      setRowData(Account)
-    })
-
     const [Post, setPost] = createSignal(false);
+    const [Feeds, setFeeds] = createSignal(false);
 
+    // onMount(async () => {
+    //     const Account = await fetchBiodataUmkm("BERHASIL");
+    //     console.log("BERHASIL!!", Account);
+    //     setRowData(Account);
+    // });
 
-    function openPostPostPopUp() {
+    const openPostPopUp = () => {
         setPost(true);
-    }
-   
-    function closePostPopUp(){
-        setPost(false);
-    }
+    };
 
-  
+    const closePostPopUp = () => {
+        setPost(false);
+    };
+
+
+    const openFeedsPopUp = () => {
+        setFeeds(true);
+    };
+
+    const closeFeedsPopUp = () => {
+        setFeeds(false);
+    };
+
+    const getStoredUserData = () => {
+  const userDataString = sessionStorage.getItem("userData");
+  return userDataString ? JSON.parse(userDataString) : null;
+};
+
+// Komponen utama
+  // Mendapatkan data dari sessionStorage
+  const userData = getStoredUserData();
+
+  // Signal untuk menyimpan nama_akun
+  const [namaAkun, setNamaAkun] = createSignal(userData?.nama_akun || "");
+
+  // Membersihkan sinyal saat komponen di-unmount
+  onCleanup(() => {
+    // Clean-up logic here, if needed
+  });
+
+  //-------------------------
+
 
     return (
         <>
@@ -45,7 +71,7 @@ const Dashboard: Component = () => {
                     <div class='profile-side'>
                         <img src="/src/assets/Ellipse_14.png" alt="" />
                         <span class='nama'>
-                            <h2>Sulthan</h2>
+                            <h2>{namaAkun()}</h2>
                         </span>
                         <span class='deskripsi'>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius</p>
@@ -68,32 +94,47 @@ const Dashboard: Component = () => {
                 </div>
 
                 <div class='main'>
-                    <div class="posting" onClick={openPostPostPopUp}>
+                    <div class="posting" onClick={openPostPopUp}>
                         <span>Buat Unggahan Baru</span><br />
                         <div class='inputpost'>
-                        <Icon  icon="solar:home-add-bold" class='iconpost'></Icon>
-                        <input type="text" placeholder='Tulis deskripsi produk Anda di sini!'></input><br />
+                            <Icon  icon="solar:home-add-bold" class='iconpost'></Icon>
+                            <input type="text" placeholder='Tulis deskripsi produk Anda di sini!'></input><br />
                         </div>
                         <button>Unggah</button>
                     </div>
-                    {/* {Post() && <Popup_post onClose={closePostPopUp}/>} */}
+                    {Post() && <Popup_post onClose={closePostPopUp} />}
                     <div class='batas'>
                         <Icon  icon="mdi:post-it-note-edit" class='iconbatas'></Icon>
                         <span>Unggahan</span>
                         <hr />
                     </div>
                     <div class='postan'>
-                        <div class='postan1'>
+                        <div class='postan1' onClick={openFeedsPopUp}>
                             <div class='headline'>
                             <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
                             <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
                             </div>
                             <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
                             <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-2'></div>
-                                <div class='gambar1-3'></div>
-                                <div class='gambar1-4'></div>
+                                <div class='gambar4-1'></div>
+                                <div class='gambar4-2'></div>
+                                <div class='gambar4-3'></div>
+                                <div class='gambar4-4'></div>
+                            </div>
+                        </div>
+                        {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} />}
+                        <div class='postan1'>
+                            <div class='headline'>
+                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
+                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
+                            </div>
+                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
+                            <div class='cont-gambar-3'>
+                                <div class='pic-gambar-3'>
+                                    <div class='gambar3-1'></div>
+                                    <div class='gambar3-2'></div>
+                                </div>
+                                <div class='gambar3-3'></div>
                             </div>
                         </div>
                         <div class='postan1'>
@@ -105,7 +146,6 @@ const Dashboard: Component = () => {
                             <div class='cont-gambar'>
                                 <div class='gambar2-1'></div>
                                 <div class='gambar2-2'></div>
-                                <div class='gambar2-3'></div>
                             </div>
                         </div>
                         <div class='postan1'>
@@ -115,57 +155,7 @@ const Dashboard: Component = () => {
                             </div>
                             <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
                             <div class='cont-gambar'>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
-                                <div class='gambar1'></div>
+                                <div class='gambar1-1'></div>
                             </div>
                         </div>
                     </div>
@@ -182,6 +172,7 @@ const Dashboard: Component = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
         </>
     )};

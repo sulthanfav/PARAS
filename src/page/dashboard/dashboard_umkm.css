@@ -144,6 +144,7 @@ nav {
     border-radius: 10px;
     padding-top: 1vh ;
     padding-left: 1vw;
+    cursor: pointer;
 }
 
 .inputpost {
@@ -233,6 +234,7 @@ nav {
     border-radius: 10px;
     margin-left: 2vw;
     margin-top: 1vw;
+    cursor: pointer;
 }
 
 .statistik {
@@ -287,14 +289,14 @@ nav {
     grid-template-columns: 1fr 1fr;
 }
 
-.gambar1-1 {
+.gambar4-1 {
     margin: 0.5vw;
     background-color: #F5F0F0;
     width: 7.375vw;
     height: 10vh;
     border-radius: 4px;
 }
-.gambar1-2 {
+.gambar4-2 {
     margin: 0.5vw;
     background-color: #F5F0F0;
     width: 7.375vw;
@@ -302,20 +304,50 @@ nav {
     border-radius: 4px;
     margin-left: 0vw;
 }
-.gambar1-3 {
+.gambar4-3 {
     margin: 0.5vw;
     background-color: #F5F0F0;
     width: 7.375vw;
     height: 10vh;
     border-radius: 4px;
+    margin-top: 0vh;
     
 }
-.gambar1-4 {
+.gambar4-4 {
     margin: 0.5vw;
     margin-left: 0vw;
     background-color: #F5F0F0;
     width: 7.375vw;
     height: 10vh;
+    border-radius: 4px;
+    margin-top: 0vh;
+}
+
+.gambar3-1 {
+    margin: 0.5vw;
+    /* margin-left: 0vw; */
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+}
+
+.gambar3-2 {
+    margin: 0.5vw;
+    /* margin-left: 0vw; */
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 10vh;
+    border-radius: 4px;
+    /* margin-top: 2vh; */
+}
+
+.gambar3-3 {
+    margin: 0.5vw;
+    margin-left: 0vw;
+    background-color: #F5F0F0;
+    width: 7.375vw;
+    height: 21vh;
     border-radius: 4px;
 }
 
@@ -324,26 +356,29 @@ nav {
     /* margin-left: 0vw; */
     background-color: #F5F0F0;
     width: 7.375vw;
-    height: 10vh;
+    height: 21vh;
     border-radius: 4px;
 }
-
 .gambar2-2 {
     margin: 0.5vw;
     margin-left: 0vw;
     background-color: #F5F0F0;
     width: 7.375vw;
-    height: 10vh;
+    height: 21vh;
     border-radius: 4px;
 }
 
-.gambar2-3 {
+.gambar1-1 {
     margin: 0.5vw;
     /* margin-left: 0vw; */
     background-color: #F5F0F0;
-    width: 7.375vw;
-    height: 10vh;
+    width: 15.25vw;
+    height: 21vh;
     border-radius: 4px;
+}
+
+.cont-gambar-3{
+    display: flex;
 }
 
 .statistik-like span {
@@ -356,3 +391,4 @@ nav {
 .statistik-like {
     margin-top: 1vh;
 }
+

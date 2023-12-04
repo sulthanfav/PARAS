@@ -31,10 +31,12 @@ const Folls : Component = () => {
                     </div>
                     <div class='side-menu'>
                         <ul>
-                        <a href="#"><li>Dashboard</li></a>
-                            <li><Icon icon="mingcute:notification-fill" /><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
+                            <a href="#"><li> <Icon icon="ic:round-home" class='icon-side'></Icon>Beranda</li></a>
+                            <A href="/notifumkm"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></A>
+                            <A href="/ProfilUMKM"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></A>
+                            <A href="/PengaturanUMKM"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></A>
+                            <a href="#"><li><Icon icon="solar:logout-2-bold" class='icon-side'></Icon>Keluar</li></a>
+                            {/* <li><a href="#"><Icon icon="solar:logout-2-bold"></Icon>Dashboard</a></li> */}
                         </ul>
                     </div>
                 </div>
