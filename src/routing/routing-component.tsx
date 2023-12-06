@@ -1,9 +1,16 @@
-// import type { Component } from 'solid-js';
 import { lazy, type Component } from 'solid-js';
-// import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router' 
 import { createSignal, onCleanup } from "solid-js";
+import { useStore } from '../integration-extension/store';
+import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router' ;
 
-import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router' 
+interface UserData {
+    "nama_akun": String,
+    "email": String,
+    "access": String,
+    "username": String,
+    "password": String
+  }
+
 // import Dashboard from '../page/dashboard/dashboard_umkm';
 // import Folls from '../page/dashboard/folls';
 // import Popup_post from '../page/dashboard/pop_up_post/popup_post';
@@ -35,79 +42,102 @@ import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router'
 // import Popup_feeds_disukai from '../assets/popup/popup_feeds_disukai/popup_feeds_disukai';
 // import Popup_hapus from '../assets/popup/popup_hapus/popup_hapus';
 
+//--------------ROUTE-UMKM-------------------------
 const Folls = lazy(() => import('../page/dashboard/folls'));
 const Popup_post = lazy(() => import('../page/dashboard/pop_up_post/popup_post'));
 const Popup_feeds = lazy(() => import('../page/pop_up_feeds/popup_feeds'));
 const Popup_feeds_edit = lazy(() => import('../page/pop_up_feeds/popup_feeds_edit'));
-const Home = lazy(() => import('../page/home-personal/home'));
-const Home_profile_umkm = lazy(() => import('../page/home-personal/home_profile_umkm/home_profile_umkm'));
 const ProfilUMKM = lazy(() => import('../page/profil_umkm/profil_umkm'));
 const EditProfilUMKM = lazy(() => import('../page/profil_umkm/edit_profile_umkm'));
 const PengaturanUMKM = lazy(() => import('../page/pengaturan/pengaturan'));
 const PengaturanIsiUMKM = lazy(() => import('../page/pengaturan/pengaturan_isi'));
 const NotifUMKM = lazy(() => import('../page/notifikasi/notif'));
+const PopupLogoutUMKM = lazy(() => import('../page/popup_logout/popup_logout'));
+const RegisterUMKMPage1 = lazy(() => import('../page/register/registerUMKMpage1'));
+const RegisterUMKMPage2 = lazy(() => import('../page/register/registerUMKMpage2'));
+const Popup_notif = lazy(() => import('../assets/popup/popup_notif/popup_notif'));
+const Dashboard = lazy(() => import('../page/dashboard/dashboard_umkm'));
+//--------------ROUTE-PERSONAL---------------------
+const Home = lazy(() => import('../page/home-personal/home'));
+const Home_profile_umkm = lazy(() => import('../page/home-personal/home_profile_umkm/home_profile_umkm'));
 const ProfilUser = lazy(() => import('../page/profil_user/profil_user'));
 const DisukaiUser = lazy(() => import('../page/disukai/disukai'));
 const HomeSearchUser = lazy(() => import('../page/home_search/home_search'));
 const PengaturanUser = lazy(() => import('../page/pengaturan/pengaturanuser'));
 const PengaturanUser2 = lazy(() => import('../page/pengaturan/pengaturanuser2'));
-const PopupLogoutUMKM = lazy(() => import('../page/popup_logout/popup_logout'));
 const Paras = lazy(() => import('../page/paras/paras'));
-const RegisterUMKMPage1 = lazy(() => import('../page/register/registerUMKMpage1'));
-const RegisterUMKMPage2 = lazy(() => import('../page/register/registerUMKMpage2'));
 const RegisterPersonalPage1 = lazy(() => import('../page/register/registerPersonalpage1'));
 const RegisterPersonalPage2 = lazy(() => import('../page/register/registerPersonalpage2'));
 const Popup_logout = lazy(() => import('../assets/popup/popup_logout/popup_logout'));
-const Popup_notif = lazy(() => import('../assets/popup/popup_notif/popup_notif'));
 const Popup_reply = lazy(() => import('../assets/popup/popup_reply/popup_reply'));
 const Popup_lagi_reply = lazy(() => import('../assets/popup/popup_lagi_reply/popup_lagi_reply'));
 const Popup_feeds_disukai = lazy(() => import('../assets/popup/popup_feeds_disukai/popup_feeds_disukai'));
 const Popup_hapus = lazy(() => import('../assets/popup/popup_hapus/popup_hapus'));
 
 const Login = lazy(() => import('../page/login/login'));
-const Dashboard = lazy(() => import('../page/dashboard/dashboard_umkm'));
 
-const getPath = () => {
-  return '/dashboard';
-}
+// const getPath = (e: any) => {
+//   return '/dashboard';
+// }
 
 const Root: Component = () => {
-  return (
+    const [{ sessionStore }] = useStore();
+
+    const userDataString = sessionStore.sessionData as unknown as string; // Ensure sessionData is a string
+    const userData = JSON.parse(userDataString) as UserData; // Parse the JSON string to an object
+    const userAccess = userData.access;
+
+    const getPath = () => {
+        if (userData.access === 'umkm') {
+            return "/umkm/dashboard";
+        }  else {
+            return "/personal/home";
+        }
+    }
+
+    return (
     <> 
     {/* <Router source={hashIntegration()}> */}
         <Routes>
             <Route path="/" element={ <Navigate href={getPath}/> } />
-            <Route path="/Dashboard" element={ <Dashboard/> } />
-            <Route path="/Folls" element={ <Folls/> } />
-            {/* <Route path="/Popup_post" element={ <Popup_post/> } /> */}
-            {/* <Route path="/Popup_feeds" element={ <Popup_feeds/> } /> */}
-            <Route path="/Popup_feeds_edit" element={ <Popup_feeds_edit/> } />
-            <Route path="/Home" element={ <Home/> } />
-            <Route path="/Home_profile_umkm" element={ <Home_profile_umkm/> } />
-            <Route path="/ProfilUMKM" element={ <ProfilUMKM/> } />
-            <Route path="/EditProfilUMKM" element={ <EditProfilUMKM/> } />
-            <Route path="/NotifUMKM" element={ <NotifUMKM/> } />
-            <Route path="/PengaturanUMKM" element={ <PengaturanUMKM/> } />
-            <Route path="/PengaturanIsiUMKM" element={ <PengaturanIsiUMKM/> } />
-            <Route path="/ProfilUser" element={ <ProfilUser/> } />
-            <Route path="/DisukaiUser" element={ <DisukaiUser/> } />
-            <Route path="/HomeSearchUser" element={ <HomeSearchUser/> } />
-            <Route path="/PengaturanUser" element={ <PengaturanUser/> } />
-            <Route path="/PengaturanUser2" element={ <PengaturanUser2/> } />
-            <Route path="/PopupLogoutUMKM" element={ <PopupLogoutUMKM/> } />
-            <Route path="/Paras" element={ <Paras/> } />
-            <Route path="/RegisterUMKMPage1" element={ <RegisterUMKMPage1/> } />
-            <Route path="/RegisterUMKMPage2" element={ <RegisterUMKMPage2/> } />
-            <Route path="/RegisterPersonalPage1" element={ <RegisterPersonalPage1/> } />
-            <Route path="/RegisterPersonalPage2" element={ <RegisterPersonalPage2/> } />
-            {/* <Route path="/LoginUMKM" element={ <LoginUMKM/> } /> */}
-            <Route path="/login" element={ <Login/> } />
-            <Route path="/Popup_logout" element={ <Popup_logout/> } />
-            <Route path="/Popup_notif" element={ <Popup_notif/> } />
-            <Route path="/Popup_reply" element={ <Popup_reply/> } />
-            <Route path="/Popup_lagi_reply" element={ <Popup_lagi_reply/> } />
-            <Route path="/Popup_feeds_disukai" element={ <Popup_feeds_disukai/> } />
-            <Route path="/Popup_hapus" element={ <Popup_hapus/> } />
+            {/* Rute sebelum login */}
+            <Route path="/Paras" component={ Paras } />
+            <Route path="/RegisterUMKMPage1" component={ RegisterUMKMPage1 } />
+            <Route path="/RegisterUMKMPage2" component={ RegisterUMKMPage2 } />
+            <Route path="/RegisterPersonalPage1" component={ RegisterPersonalPage1 } />
+            <Route path="/RegisterPersonalPage2" component={ RegisterPersonalPage2 } />
+            <Route path="/login" component={ Login } />
+
+            {/* Rute setelah login sebagai umkm*/}
+            <Route path="/umkm" >
+              <Route path="/dashboard" component={ Dashboard } />
+              <Route path="/NotifUMKM" component={ NotifUMKM } />
+              <Route path="/PengaturanUMKM" component={ PengaturanUMKM } />
+              <Route path="/PengaturanIsiUMKM" component={ PengaturanIsiUMKM } />
+              <Route path="/Folls" component={ Folls } />
+              {/* <Route path="/Popup_feeds_edit" component={ <Popup_feeds_edit/> } /> */}
+              <Route path="/Home_profile_umkm" component={ Home_profile_umkm } />
+              <Route path="/EditProfilUMKM" component={ EditProfilUMKM } />
+              <Route path="/ProfilUMKM" component={ ProfilUMKM } />
+            </Route>
+
+            {/* Rute setelah login sebagai personal*/}
+            <Route path="/personal" >
+              <Route path="/home" component={ Home } />
+              <Route path="/ProfilUser" component={ ProfilUser } />
+              <Route path="/DisukaiUser" component={ DisukaiUser } />
+              <Route path="/HomeSearchUser" component={ HomeSearchUser } />
+              <Route path="/PengaturanUser" component={ PengaturanUser } />
+              <Route path="/PengaturanUser2" component={ PengaturanUser2 } />
+              {/* <Route path="/PopupLogoutUMKM" component={ <PopupLogoutUMKM/> } /> */}
+              {/* <Route path="/LoginUMKM" component={ <LoginUMKM/> } /> */}
+              {/* <Route path="/Popup_logout" component={ <Popup_logout/> } /> */}
+              {/* <Route path="/Popup_notif" component={ <Popup_notif/> } />
+              <Route path="/Popup_reply" component={ <Popup_reply/> } />
+              <Route path="/Popup_lagi_reply" component={ <Popup_lagi_reply/> } />
+              <Route path="/Popup_feeds_disukai" component={ <Popup_feeds_disukai/> } />
+              <Route path="/Popup_hapus" component={ <Popup_hapus/> } /> */}
+            </Route>
         </Routes>
     {/* </Router> */}
     </>

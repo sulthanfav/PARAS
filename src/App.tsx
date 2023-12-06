@@ -22,7 +22,7 @@ const App: Component = () => {
     }
     console.log('need login ' + needLogin());
     if (needLogin()) {
-      navigate('/dashboard', { replace: true });
+      navigate('/login', { replace: true });
     }
   });
   return (

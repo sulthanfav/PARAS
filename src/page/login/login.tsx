@@ -1,6 +1,6 @@
 import { Component, createSignal, onMount, onCleanup } from 'solid-js';
 import { For } from 'solid-js/web';
-import { A } from '@solidjs/router';
+import { A, useNavigate } from '@solidjs/router';
 import './login.css'; // File stylesheet eksternal
 import "daisyui/dist/full.css"; // File stylesheet eksternal dari daisyui
 import { Icon } from "@iconify-icon/solid";
@@ -16,6 +16,7 @@ interface LoginProps {
 const Login: Component<LoginProps> = (props) => {
   const [username, setUsername] = createSignal("");
   const [password, setPassword] = createSignal("");
+  const navigate = useNavigate();
 
   onMount(() => {
   console.log('ini halaman Login');
@@ -59,6 +60,9 @@ const Login: Component<LoginProps> = (props) => {
       const data = await fetchLogin();
       // Cek apakah data login berhasil atau tidak
       if (data) {
+        if (data !== null) {
+          navigate("/dashboard", { replace: true});
+        }
           // Login berhasil, Anda dapat menyimpan data pengguna di sessionStorage atau localStorage
           sessionStorage.setItem('userData', JSON.stringify(data));
           // Redirect ke halaman utama atau halaman lain yang sesuai
@@ -71,6 +75,7 @@ const Login: Component<LoginProps> = (props) => {
       // Handle kesalahan saat melakukan permintaan login
       console.error(error);
       }
+
   };
 
     // Mengembalikan elemen JSX

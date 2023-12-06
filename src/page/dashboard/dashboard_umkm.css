@@ -126,6 +126,7 @@ nav {
     align-items: center;
     display: flex;
     padding: 1vw;
+    cursor: pointer;
 }
 
 .side-menu .icon-side {
@@ -133,6 +134,7 @@ nav {
     font-size: 25px;
     color: #333;
     fill: #333;
+    
 }
 
 .posting{

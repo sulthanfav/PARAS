@@ -8,8 +8,8 @@ import {
 } from 'solid-js';
 import { createStore, SetStoreFunction, Store } from 'solid-js/store';
 import { rootInitialState, RootState } from './_state';
-import { loadState } from '../lib/localStorage';
-import { mergeDeep, pick, omit } from '../lib/helpers';
+import { loadState } from '../integration-extension/lib/localStorage';
+import { mergeDeep, pick, omit } from '../integration-extension/lib/helpers';
 
 const initialState = mergeDeep(rootInitialState(), loadState() || {});
 const StoreContext = createContext();

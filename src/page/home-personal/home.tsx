@@ -5,7 +5,7 @@ import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 
-const home: Component = () => {
+const Home: Component = () => {
 
     return (
         <>
@@ -175,4 +175,4 @@ const home: Component = () => {
     </>
     )};
 
-export default home;
+export default Home;

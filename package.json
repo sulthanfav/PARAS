@@ -8,7 +8,6 @@
     "build": "vite build",
     "serve": "vite preview",
     "sebar": "vite --host=0.0.0.0 --port=8004"
-
   },
   "license": "MIT",
   "devDependencies": {
@@ -21,7 +20,9 @@
   "dependencies": {
     "@iconify/iconify": "^3.1.1",
     "@solidjs/router": "^0.9.1",
+    "@types/js-cookie": "^3.0.6",
     "iconify": "^1.4.0",
+    "js-cookie": "^3.0.5",
     "solid-js": "^1.7.6"
   }
 }
