@@ -4,11 +4,28 @@ import './dashboard_umkm.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
-import { fetchBiodataUmkm, BiodataUmkm } from '../../api/akun';
+import { fetchBiodataUmkm } from '../../api/akun';
 import Popup_post from './pop_up_post/popup_post';
 import Popup_feeds from '../pop_up_feeds/popup_feeds';
 import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
+import { Gambar, Postingan, fetchPostingan } from '../../api/postingan';
+import { fetchGambar } from '../../api/gambar_postingan';
 // import './Popup_post';
+
+export type BiodataUmkm = {
+  alamat_toko: string;
+  deskripsi_toko: string;
+  nib: string;
+  kontak_bisnis: string;
+  kategori: string;
+  akun_id: string;
+  gambar: string;
+};
+
+interface GambarPostingan {
+  nama_gambar: string;
+  // Sesuaikan dengan properti lain yang mungkin ada
+}
 
 const Dashboard: Component = () => {
     // const [RowData, setRowData] = createSignal([{}]);
@@ -48,7 +65,7 @@ const Dashboard: Component = () => {
         setLogout(false);
     };
 
-// Komponen utama-----------------------------
+// GET-NAME-SIDE-BAR-----------------------------
     const getStoredUserData = () => {
   const userDataString = sessionStorage.getItem("userData");
   return userDataString ? JSON.parse(userDataString) : null;
@@ -65,7 +82,7 @@ const Dashboard: Component = () => {
     // Clean-up logic here, if needed
   });
 
-//-----------------------------------------
+//GET-DESC-PROFILE-----------------------------------------
 const getStoredBiodataUmkm = () => {
   const BiodataUmkmString = sessionStorage.getItem("biodataUmkm");
   return BiodataUmkmString ? JSON.parse(BiodataUmkmString) : null;
@@ -78,22 +95,81 @@ const biodataUmkm = biodataUmkmArray && biodataUmkmArray.length ? biodataUmkmArr
 const deskripsiToko = biodataUmkm ? biodataUmkm.deskripsi_toko : "";
 console.log(deskripsiToko);
 
-//-------------------------------------------------
+//GET-PIC-PROFILE-------------------------------------------------
+  const [gambarProfile, setGambarProfile] = createSignal<BiodataUmkm[]>([]);
   onMount(async () => {
     try {
       const biodataUmkmArray = await fetchBiodataUmkm();
+      console.log(biodataUmkmArray);
 
-      // Now you have the biodataUmkm available for use
-      console.log(biodataUmkm);
-
-      // Additional logic with biodataUmkm if needed
-
+      if (Array.isArray(biodataUmkmArray)) {
+        setGambarProfile(biodataUmkmArray);
+      } else {
+        console.error('Data yang diterima bukan array GambarPostingan');
+      }
     } catch (error) {
-      console.error("Error fetching biodataUmkm", error);
-      // Handle errors if needed
+      console.error("Error fetching Postingan", error);
+    }
+
+  });
+  const urlGambar = (namaGambar: string) => `/src/assets/profile/${namaGambar}`;
+//-------------------------------------------------
+// const [postingan, setPostingan] = createSignal<Postingan[]>([]);
+//   onMount(async () => {
+//     try {
+//       const postingan = await fetchPostingan();
+//       console.log(postingan);
+
+//       if (Array.isArray(postingan)) {
+//         setPostingan(postingan);
+//       } else {
+//         console.error('Data yang diterima bukan array Postingan');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching Postingan', error);
+//     }
+//   });
+//-------------------------------------------------
+//   const [gambarPostingan, setGambarPostingan] = createSignal<GambarPostingan[]>([]);
+
+//   onMount(async () => {
+//     try {
+//       const gambarPostinganData = await fetchGambarPostingan();
+//       console.log(gambarPostinganData);
+
+//       // Memastikan bahwa gambarPostinganData adalah array
+//       if (Array.isArray(gambarPostinganData)) {
+//         setGambarPostingan(gambarPostinganData);
+//       } else {
+//         console.error('Data yang diterima bukan array GambarPostingan');
+//       }
+//     } catch (error) {
+//       console.error("Error fetching Postingan", error);
+//     }
+//   });
+//---------------------------------------------------------
+    const [postingan, setPostingan] = createSignal<Postingan[]>([]);
+  onMount(async () => {
+    try {
+      const dataPostingan = await fetchPostingan();
+      if (dataPostingan) {
+        setPostingan(dataPostingan);
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
     }
   });
 
+  const numberOfImages = 4;
+  const renderGambar = (gambar: Gambar[], postPath: string) => (
+    <div class={`cont-gambar`}>
+      <For each={gambar}>{(g: Gambar, i) => (
+        <div class={`gambar-${i() + 1}`}>
+          <img src={`${postPath}/${g.nama_gambar}`} alt={`gambar-${i() + 1}`} />
+        </div>
+      )}</For>
+    </div>
+  );
     return (
         <>
         <div class='body'>
@@ -107,7 +183,11 @@ console.log(deskripsiToko);
 
                 <div class='side'>
                     <div class='profile-side'>
-                        <img src="/src/assets/Ellipse_14.png" alt="" />
+                        <div class='profile-img'>
+                            {gambarProfile().map((gambar) => (
+                                <img src={urlGambar(gambar.gambar)} alt="" />
+                            ))}
+                        </div>
                         <span class='nama'>
                             <h2>{namaAkun()}</h2>
                         </span>
@@ -149,55 +229,17 @@ console.log(deskripsiToko);
                         <hr />
                     </div>
                     <div class='postan'>
-                        <div class='postan1' onClick={openFeedsPopUp}>
+                        <For each={postingan()}>{(post: Postingan) => (
+                        <div class={`postan${post.gambar.length}`} onClick={openFeedsPopUp}>
                             <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
+                            <span class='judul'>{post.nama}</span>
                             <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
                             </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar4-1'></div>
-                                <div class='gambar4-2'></div>
-                                <div class='gambar4-3'></div>
-                                <div class='gambar4-4'></div>
-                            </div>
+                            <span class='deskripsi1'>{post.deskripsi}</span>
+                            {renderGambar(post.gambar, '/src/assets/postingan')}
                         </div>
+                        )}</For>
                         {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} />}
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar-3'>
-                                <div class='pic-gambar-3'>
-                                    <div class='gambar3-1'></div>
-                                    <div class='gambar3-2'></div>
-                                </div>
-                                <div class='gambar3-3'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar2-1'></div>
-                                <div class='gambar2-2'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

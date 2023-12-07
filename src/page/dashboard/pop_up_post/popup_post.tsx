@@ -29,10 +29,10 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
                 </div>
             </div>
             <select name="" id="">
-                <option value="">Kategori Anda</option>
+                <option value="">Fashion</option>
                 <option value="">ama</option>
-                <option value="">Kategori Anda</option>
-                <option value="">Kategori Anda</option>
+                <option value="">Fashion Pria</option>
+                <option value="">Fashion Wanita</option>
             </select>
                 <Icon icon="mingcute:attachment-line" class='attc-icon'></Icon>
                 <Icon  icon="ph:link-bold" class='link-icon'></Icon>
