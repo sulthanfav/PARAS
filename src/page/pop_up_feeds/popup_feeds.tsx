@@ -4,13 +4,17 @@ import './popup_feeds.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
+import { Postingan } from '../../api/postingan';
 
 interface PopUpFeedsProps {
-  onClose: () => void,
+  onClose: () => void;
+  postId: number | null;
+//   postinganselect: Postingan | null;
+//   gambar: Gambar[] | null;
 }
 
 const Popup_feeds: Component<PopUpFeedsProps> = (props) => {
-
+console.log(props.postId)
     return (
         <>
         <div class='overlay'>

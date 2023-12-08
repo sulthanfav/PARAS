@@ -32,13 +32,6 @@ const Dashboard: Component = () => {
     const [Post, setPost] = createSignal(false);
     const [Feeds, setFeeds] = createSignal(false);
     const [logout, setLogout] = createSignal(false);
-
-    // onMount(async () => {
-    //     const BiodataUmkm = await fetchBiodataUmkm("BERHASIL");
-    //     console.log("BERHASIL!!", Account);
-    //     setRowData(Account);
-    // });
-
 //----------------------------------
     const openPostPopUp = () => {
         setPost(true);
@@ -49,13 +42,16 @@ const Dashboard: Component = () => {
     };
 
 //-------------------------------
-    const openFeedsPopUp = () => {
-        setFeeds(true);
+const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
+    const openFeedsPopUp = (post_id: number) => {
+      setFeeds(true);
+      setSelectedPostId(post_id);
     };
 
-    const closeFeedsPopUp = () => {
-        setFeeds(false);
-    };
+  const closeFeedsPopUp = () => {
+    setFeeds(false);
+    setSelectedPostId(null);
+  }; 
 //-------------------------------
     const openLogoutPopUp = () => {
         setLogout(true);
@@ -113,45 +109,12 @@ console.log(deskripsiToko);
 
   });
   const urlGambar = (namaGambar: string) => `/src/assets/profile/${namaGambar}`;
-//-------------------------------------------------
-// const [postingan, setPostingan] = createSignal<Postingan[]>([]);
-//   onMount(async () => {
-//     try {
-//       const postingan = await fetchPostingan();
-//       console.log(postingan);
-
-//       if (Array.isArray(postingan)) {
-//         setPostingan(postingan);
-//       } else {
-//         console.error('Data yang diterima bukan array Postingan');
-//       }
-//     } catch (error) {
-//       console.error('Error fetching Postingan', error);
-//     }
-//   });
-//-------------------------------------------------
-//   const [gambarPostingan, setGambarPostingan] = createSignal<GambarPostingan[]>([]);
-
-//   onMount(async () => {
-//     try {
-//       const gambarPostinganData = await fetchGambarPostingan();
-//       console.log(gambarPostinganData);
-
-//       // Memastikan bahwa gambarPostinganData adalah array
-//       if (Array.isArray(gambarPostinganData)) {
-//         setGambarPostingan(gambarPostinganData);
-//       } else {
-//         console.error('Data yang diterima bukan array GambarPostingan');
-//       }
-//     } catch (error) {
-//       console.error("Error fetching Postingan", error);
-//     }
-//   });
 //---------------------------------------------------------
-    const [postingan, setPostingan] = createSignal<Postingan[]>([]);
+  const [postingan, setPostingan] = createSignal<Postingan[]>([]);
   onMount(async () => {
     try {
       const dataPostingan = await fetchPostingan();
+      console.log("test_data_posting", dataPostingan)
       if (dataPostingan) {
         setPostingan(dataPostingan);
       }
@@ -229,8 +192,8 @@ console.log(deskripsiToko);
                         <hr />
                     </div>
                     <div class='postan'>
-                        <For each={postingan()}>{(post: Postingan) => (
-                        <div class={`postan${post.gambar.length}`} onClick={openFeedsPopUp}>
+                        <For each={postingan()} fallback={<div class="pinwheel"><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div></div>}>{(post: Postingan) => (
+                            <div class={`postan${post.gambar.length}`}onClick={() => {setSelectedPostId(post.post_id);openFeedsPopUp(post.post_id);}}>
                             <div class='headline'>
                             <span class='judul'>{post.nama}</span>
                             <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
@@ -239,8 +202,8 @@ console.log(deskripsiToko);
                             {renderGambar(post.gambar, '/src/assets/postingan')}
                         </div>
                         )}</For>
-                        {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} />}
                     </div>
+                        {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} postId={selectedPostId()} />}
                 </div>
 
                 <div class='statistik'>
