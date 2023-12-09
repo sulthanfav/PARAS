@@ -4,17 +4,84 @@ import './popup_feeds.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
-import { Postingan } from '../../api/postingan';
+import { fetchPostingan, Postingan } from '../../api/postingan';
+import { fetchPostinganSelected } from '../../api/postinganselected';
+
+// interface Postingan {
+//   gambar: any;
+//   post_id: number;
+//   akun_id: number;
+//   nama?: string;
+//   deskripsi?: string;
+//   tag?: string;
+//   jenis_postingan?: string;
+//   created_at?: Date | null;
+//   link: string;
+// }
 
 interface PopUpFeedsProps {
   onClose: () => void;
+  postinganselect: Postingan | null;
   postId: number | null;
 //   postinganselect: Postingan | null;
 //   gambar: Gambar[] | null;
 }
 
+
 const Popup_feeds: Component<PopUpFeedsProps> = (props) => {
-console.log(props.postId)
+onMount(async () => {
+  // Ambil nilai post_id dari prop atau state, sesuai dengan implementasi Anda
+  const post_id = props.postId;
+
+  // Pemeriksaan null sebelum menggunakan post_id
+  if (post_id !== null) {
+    // Ambil data menggunakan nilai post_id
+    const result = await fetchPostinganSelected(post_id);
+
+    // Lakukan logika tambahan atau rendering berdasarkan data yang diambil
+    console.log("Result from fetchPostinganSelected in PopupFeeds:", result);
+  } else {
+    console.error("post_id is null");
+  }
+});
+
+    //------------------------------------------------------
+// const [postingan, setPostingan] = createSignal<Postingan[]>([]);
+//   onMount(async () => {
+//     try {
+//       const dataPostingan = await fetchPostingan();
+//       console.log("test_data_posting", dataPostingan)
+//       if (dataPostingan) {
+//         setPostingan(dataPostingan);
+//         console.log("props.postId:", props.postId);
+//     //   console.log("Postingan with matching post_id:", dataPostingan.find(post => post.post_id === props.postId));
+//       }
+//     } catch (error) {
+//       console.error("Error fetching Postingan", error);
+//     }    
+//   });
+  //======================================================
+//   const [selectedPost, setSelectedPost] = createSignal<Postingan | null>(null);
+// // Di dalam blok onMount
+// onMount(async () => {
+//   try {
+//     const dataPostingan = await fetchPostingan();
+//     console.log("test_data_posting", dataPostingan)
+//     if (dataPostingan) {
+//       setPostingan(dataPostingan);
+//       console.log("props.postId:", props.postId);
+//       const post = dataPostingan.find((post: Postingan) => post.post_id === props.postId);
+//       setSelectedPost(post || null);
+//     }
+//   } catch (error) {
+//     console.error("Error fetching Postingan", error);
+//   }
+// });
+// const selectedPost = postingan().find((post: Postingan) => post.post_id === props.postId);
+    // const selectedPost = props.postinganselect;
+    // console.log(props.postinganselect)
+    console.log(props.postId)
+
     return (
         <>
         <div class='overlay'>

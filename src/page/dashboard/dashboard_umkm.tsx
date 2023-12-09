@@ -10,6 +10,7 @@ import Popup_feeds from '../pop_up_feeds/popup_feeds';
 import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
 import { Gambar, Postingan, fetchPostingan } from '../../api/postingan';
 import { fetchGambar } from '../../api/gambar_postingan';
+import { fetchPostinganSelected } from '../../api/postinganselected';
 // import './Popup_post';
 
 export type BiodataUmkm = {
@@ -43,15 +44,25 @@ const Dashboard: Component = () => {
 
 //-------------------------------
 const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
-    const openFeedsPopUp = (post_id: number) => {
-      setFeeds(true);
-      setSelectedPostId(post_id);
-    };
+const [selectedPost, setSelectedPost] = createSignal<Postingan | null>(null);
+const openFeedsPopUp = async (post_id: number) => {
+  const selected = postingan().find(post => post.post_id === post_id) || null;
+  // console.log("Selected Post:", selected);
+  setFeeds(true);
+  setSelectedPostId(post_id);
+  setSelectedPost(selected);
+
+  const result = await fetchPostinganSelected(post_id);
+
+  // Sekarang Anda dapat menggunakan nilai 'result' di sini
+};
 
   const closeFeedsPopUp = () => {
     setFeeds(false);
     setSelectedPostId(null);
   }; 
+  //-------------------------------
+
 //-------------------------------
     const openLogoutPopUp = () => {
         setLogout(true);
@@ -79,24 +90,24 @@ const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
   });
 
 //GET-DESC-PROFILE-----------------------------------------
-const getStoredBiodataUmkm = () => {
-  const BiodataUmkmString = sessionStorage.getItem("biodataUmkm");
-  return BiodataUmkmString ? JSON.parse(BiodataUmkmString) : null;
-};
+// const getStoredBiodataUmkm = () => {
+//   const BiodataUmkmString = sessionStorage.getItem("biodataUmkm");
+//   return BiodataUmkmString ? JSON.parse(BiodataUmkmString) : null;
+// };
 
-const biodataUmkmArray = getStoredBiodataUmkm();
-const biodataUmkm = biodataUmkmArray && biodataUmkmArray.length ? biodataUmkmArray[0] : null;
+// const biodataUmkmArray = getStoredBiodataUmkm();
+// const biodataUmkm = biodataUmkmArray && biodataUmkmArray.length ? biodataUmkmArray[0] : null;
 
-// Check if biodataUmkm is not null before accessing its properties
-const deskripsiToko = biodataUmkm ? biodataUmkm.deskripsi_toko : "";
-console.log(deskripsiToko);
+// // Check if biodataUmkm is not null before accessing its properties
+// const deskripsiToko = biodataUmkm ? biodataUmkm.deskripsi_toko : "";
+// console.log(deskripsiToko);
 
 //GET-PIC-PROFILE-------------------------------------------------
   const [gambarProfile, setGambarProfile] = createSignal<BiodataUmkm[]>([]);
   onMount(async () => {
     try {
       const biodataUmkmArray = await fetchBiodataUmkm();
-      console.log(biodataUmkmArray);
+      // console.log(biodataUmkmArray);
 
       if (Array.isArray(biodataUmkmArray)) {
         setGambarProfile(biodataUmkmArray);
@@ -114,7 +125,7 @@ console.log(deskripsiToko);
   onMount(async () => {
     try {
       const dataPostingan = await fetchPostingan();
-      console.log("test_data_posting", dataPostingan)
+      // console.log("test_data_posting", dataPostingan)
       if (dataPostingan) {
         setPostingan(dataPostingan);
       }
@@ -155,7 +166,7 @@ console.log(deskripsiToko);
                             <h2>{namaAkun()}</h2>
                         </span>
                         <span class='deskripsi'>
-                            <p>{deskripsiToko()}</p>
+                            <p>{gambarProfile().map((deskripsi) => deskripsi.deskripsi_toko)}</p>
                         </span>
                         <A href="/umkm/folls"><span class='folls'>
                             <p class='p1'>Followers</p>
@@ -203,7 +214,8 @@ console.log(deskripsiToko);
                         </div>
                         )}</For>
                     </div>
-                        {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} postId={selectedPostId()} />}
+                      {Feeds() && <Popup_feeds onClose={closeFeedsPopUp} postId={selectedPostId()} postinganselect={selectedPost()} />}
+
                 </div>
 
                 <div class='statistik'>

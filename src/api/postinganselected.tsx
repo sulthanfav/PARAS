@@ -16,26 +16,11 @@ export interface Gambar {
   path?: string;
 }
 
-export async function fetchPostingan() {
-  // Mendapatkan akun_id dari sessionStorage
-  const userDataString = sessionStorage.getItem('userData');
-  
-  if (!userDataString) {
-    console.error('Data pengguna tidak tersedia.');
-    return null;
-  }
-
-  const userData = JSON.parse(userDataString) as { akun_id: string };
-
-  // Jika akun_id tidak tersedia, mungkin hendaknya menangani kasus ini dengan cara tertentu
-  if (!userData.akun_id) {
-    console.error('Akun ID tidak tersedia.');
-    return null;
-  }
+export async function fetchPostinganSelected(post_id: number) {
 
   try {
     // Fetch data postingan dari API
-    const responsePostingan = await fetch(`/api/postingan/`);
+    const responsePostingan = await fetch(`/api/postingan/selected/${post_id}`);
     const allPostingan = await responsePostingan.json();
 
     // Fetch data gambar untuk setiap postingan
@@ -58,12 +43,7 @@ export async function fetchPostingan() {
       return { ...post, gambar: relatedGambar?.gambar || [] };
     });
 
-    // Filter postingan berdasarkan akun_id
-    const filteredPostingan = postinganWithGambar.filter((post: Postingan) => post.akun_id === parseInt(userData.akun_id, 10));
-
-    // console.log("Data Postingan Filter :", filteredPostingan);
-
-    return filteredPostingan;
+    return postinganWithGambar;
   } catch (error) {
     console.error('Error fetching postingan:', error);
     return null;
