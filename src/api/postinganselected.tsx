@@ -1,5 +1,5 @@
 // postingan.tsx
-export interface Postingan {
+export interface PostinganSelected {
   gambar: any;
   post_id: number;
   akun_id: number;
@@ -11,7 +11,7 @@ export interface Postingan {
   link: string;
 }
 
-export interface Gambar {
+export interface GambarSelected {
   nama_gambar: string;
   path?: string;
 }
@@ -24,10 +24,10 @@ export async function fetchPostinganSelected(post_id: number) {
     const allPostingan = await responsePostingan.json();
 
     // Fetch data gambar untuk setiap postingan
-    const gambarPromises = allPostingan.map(async (post: Postingan) => {
+    const gambarPromises = allPostingan.map(async (post: PostinganSelected) => {
       const responseGambar = await fetch(`/api/gambar_postingan/${post.post_id}`);
       const gambar = await responseGambar.json();
-      const gambarWithPath = gambar.map((g: Gambar) => ({
+      const gambarWithPath = gambar.map((g: GambarSelected) => ({
         ...g,
         path: `/src/assets/postingan/${g.nama_gambar}`
       }));
@@ -38,7 +38,7 @@ export async function fetchPostinganSelected(post_id: number) {
     const gambarResults = await Promise.all(gambarPromises);
 
     // Gabungkan data postingan dan gambar
-    const postinganWithGambar = allPostingan.map((post: Postingan) => {
+    const postinganWithGambar = allPostingan.map((post: PostinganSelected) => {
       const relatedGambar = gambarResults.find((g) => g.post_id === post.post_id);
       return { ...post, gambar: relatedGambar?.gambar || [] };
     });

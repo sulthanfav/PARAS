@@ -13,7 +13,7 @@
 .popup-post {
     background-color: #F5F0F0;
     width: 48vw;
-    height: 40vh;
+    height: auto;
     position: fixed;
     top: 30vh;
     left: 49vw;
@@ -69,10 +69,12 @@ select{
 }
 
 .popup-post .attc-icon, .link-icon {
-    margin-top: 1.5vh;
-    margin-left: 0.5vw;
+padding: 0.3vw;
+    /* margin-top: 1.5vh; */
+    /* margin-left: 0.5vw; */
     color: #333;
     font-size: 2vw;
+    cursor: pointer;
 }
 
 .popup-post button{
@@ -88,3 +90,28 @@ select{
     margin-left: 35vw;
     cursor: pointer;
 }
+
+.bg-attc {
+    padding-left: 0.2vw;
+    width: 3vw;
+    border-radius: 100%;
+    height: 6vh;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+}
+
+.cont-icon {
+    display: flex;
+    margin-top: 1vh;
+}
+
+.bg-link {
+    border-radius: 20px;
+    margin-right: 1vw;
+    width: 38vw;
+    display: flex;
+    align-items: center;
+    background-color: #FFF;
+}
+

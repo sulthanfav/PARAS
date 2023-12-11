@@ -14,7 +14,7 @@ const Popup_logout: Component<LogoutProps> = (props) => {
         console.log('hallo logout');
         sessionStorage.clear();
         window.location.reload();
-        navigate('/login')
+        navigate('/paras')
       }
     return (
         <>

@@ -4,8 +4,25 @@ import './folls.css';
 import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
-import { fetchBiodataUmkm, BiodataUmkm } from '../../api/akun';
+import { fetchBiodataUmkm } from '../../api/akun';
 import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
+import { fetchCountFolls } from '../../api/followers';
+
+
+export type BiodataUmkm = {
+  alamat_toko: string;
+  deskripsi_toko: string;
+  nib: string;
+  kontak_bisnis: string;
+  kategori: string;
+  akun_id: string;
+  gambar: string;
+};
+
+interface CountFolls {
+  count: number;
+  // Sesuaikan dengan properti lain yang mungkin ada
+}
 
 const Folls : Component = () => {
 
@@ -63,6 +80,38 @@ console.log(deskripsiToko);
         setLogout(false);
     };
   //------------------------------------------------------
+  const [gambarProfile, setGambarProfile] = createSignal<BiodataUmkm[]>([]);
+  onMount(async () => {
+    try {
+      const biodataUmkmArray = await fetchBiodataUmkm();
+      // console.log(biodataUmkmArray);
+
+      if (Array.isArray(biodataUmkmArray)) {
+        setGambarProfile(biodataUmkmArray);
+      } else {
+        console.error('Data yang diterima bukan array GambarPostingan');
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
+    }
+
+  });
+  const urlGambar = (namaGambar: string) => `/src/assets/profile/${namaGambar}`;
+  //--------------------------------------------------------------
+  const [folls, setFolls] = createSignal<CountFolls>();
+  onMount(async () => {
+    try {
+      const dataFolls = await fetchCountFolls();
+      console.log("test_data_follower", dataFolls)
+      if (dataFolls) {
+        setFolls(dataFolls);
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
+    }
+  });
+
+  //-------------------------------------------------------------------
   
     return (
         <>
@@ -76,17 +125,21 @@ console.log(deskripsiToko);
 
                 <div class='side'>
                     <div class='profile-side'>
-                        <img src="/src/assets/Ellipse_14.png" alt="" />
+                        <div class='profile-img'>
+                            {gambarProfile().map((gambar) => (
+                                <img src={urlGambar(gambar.gambar)} alt="" />
+                            ))}
+                        </div>
                         <span class='nama'>
                             <h2>{namaAkun()}</h2>
                         </span>
                         <span class='deskripsi'>
-                            <p>{deskripsiToko()}</p>
+                            <p>{gambarProfile().map((deskripsi) => deskripsi.deskripsi_toko)}</p>
                         </span>
-                        <span class='folls'>
+                        <A href="/umkm/folls"><span class='folls'>
                             <p class='p1'>Followers</p>
-                            <p>127</p>
-                        </span>
+                            <p>{folls()?.count}</p>
+                        </span></A>
                     </div>
                     <div class='side-menu'>
                         <ul>

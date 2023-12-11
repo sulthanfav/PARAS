@@ -6,7 +6,6 @@ export interface Postingan {
   nama?: string;
   deskripsi?: string;
   tag?: string;
-  jenis_postingan?: string;
   created_at?: Date | null;
   link: string;
 }
@@ -61,7 +60,7 @@ export async function fetchPostingan() {
     // Filter postingan berdasarkan akun_id
     const filteredPostingan = postinganWithGambar.filter((post: Postingan) => post.akun_id === parseInt(userData.akun_id, 10));
 
-    // console.log("Data Postingan Filter :", filteredPostingan);
+    console.log("Data Postingan Filter :", filteredPostingan);
 
     return filteredPostingan;
   } catch (error) {

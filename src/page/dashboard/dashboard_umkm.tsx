@@ -11,6 +11,7 @@ import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
 import { Gambar, Postingan, fetchPostingan } from '../../api/postingan';
 import { fetchGambar } from '../../api/gambar_postingan';
 import { fetchPostinganSelected } from '../../api/postinganselected';
+import { fetchCountFolls } from '../../api/followers';
 // import './Popup_post';
 
 export type BiodataUmkm = {
@@ -23,8 +24,8 @@ export type BiodataUmkm = {
   gambar: string;
 };
 
-interface GambarPostingan {
-  nama_gambar: string;
+interface CountFolls {
+  count: number;
   // Sesuaikan dengan properti lain yang mungkin ada
 }
 
@@ -53,8 +54,6 @@ const openFeedsPopUp = async (post_id: number) => {
   setSelectedPost(selected);
 
   const result = await fetchPostinganSelected(post_id);
-
-  // Sekarang Anda dapat menggunakan nilai 'result' di sini
 };
 
   const closeFeedsPopUp = () => {
@@ -62,8 +61,6 @@ const openFeedsPopUp = async (post_id: number) => {
     setSelectedPostId(null);
   }; 
   //-------------------------------
-
-//-------------------------------
     const openLogoutPopUp = () => {
         setLogout(true);
     };
@@ -88,19 +85,6 @@ const openFeedsPopUp = async (post_id: number) => {
   onCleanup(() => {
     // Clean-up logic here, if needed
   });
-
-//GET-DESC-PROFILE-----------------------------------------
-// const getStoredBiodataUmkm = () => {
-//   const BiodataUmkmString = sessionStorage.getItem("biodataUmkm");
-//   return BiodataUmkmString ? JSON.parse(BiodataUmkmString) : null;
-// };
-
-// const biodataUmkmArray = getStoredBiodataUmkm();
-// const biodataUmkm = biodataUmkmArray && biodataUmkmArray.length ? biodataUmkmArray[0] : null;
-
-// // Check if biodataUmkm is not null before accessing its properties
-// const deskripsiToko = biodataUmkm ? biodataUmkm.deskripsi_toko : "";
-// console.log(deskripsiToko);
 
 //GET-PIC-PROFILE-------------------------------------------------
   const [gambarProfile, setGambarProfile] = createSignal<BiodataUmkm[]>([]);
@@ -133,8 +117,21 @@ const openFeedsPopUp = async (post_id: number) => {
       console.error("Error fetching Postingan", error);
     }
   });
+//---------------------------------------------------------
+  const [folls, setFolls] = createSignal<CountFolls>();
+  onMount(async () => {
+    try {
+      const dataFolls = await fetchCountFolls();
+      console.log("test_data_follower", dataFolls)
+      if (dataFolls) {
+        setFolls(dataFolls);
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
+    }
+  });
 
-  const numberOfImages = 4;
+  // const numberOfImages = 4;
   const renderGambar = (gambar: Gambar[], postPath: string) => (
     <div class={`cont-gambar`}>
       <For each={gambar}>{(g: Gambar, i) => (
@@ -144,6 +141,8 @@ const openFeedsPopUp = async (post_id: number) => {
       )}</For>
     </div>
   );
+  
+  //===================================================
     return (
         <>
         <div class='body'>
@@ -170,7 +169,7 @@ const openFeedsPopUp = async (post_id: number) => {
                         </span>
                         <A href="/umkm/folls"><span class='folls'>
                             <p class='p1'>Followers</p>
-                            <p>127</p>
+                            <p>{folls()?.count}</p>
                         </span></A>
                     </div>
                     <div class='side-menu'>
