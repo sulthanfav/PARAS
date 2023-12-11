@@ -6,7 +6,7 @@ import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 import { fetchBiodataUmkm } from '../../api/akun';
 import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
-import { fetchCountFolls } from '../../api/followers';
+import { fetchCountFolls, fetchGetFolls } from '../../api/followers';
 
 
 export type BiodataUmkm = {
@@ -22,6 +22,12 @@ export type BiodataUmkm = {
 interface CountFolls {
   count: number;
   // Sesuaikan dengan properti lain yang mungkin ada
+}
+
+interface getFollwers {
+    nama_akun: string;  // Change 'String' to 'string'
+    username: string;   // Change 'String' to 'string'
+    gambar: string;
 }
 
 const Folls : Component = () => {
@@ -110,6 +116,22 @@ console.log(deskripsiToko);
       console.error("Error fetching Postingan", error);
     }
   });
+  //--------------------------------------------------------------
+  const [getfolls, setGetFolls] = createSignal<getFollwers>();
+onMount(async () => {
+    try {
+        const dataGetFolls = await fetchGetFolls();
+        console.log("test_data_follower", dataGetFolls)
+        if (dataGetFolls) {
+            setGetFolls((prevFolls) => dataGetFolls);
+        }
+    } catch (error) {
+        console.error("Error fetching Postingan", error);
+    }
+});
+
+
+  
 
   //-------------------------------------------------------------------
   
@@ -164,56 +186,24 @@ console.log(deskripsiToko);
                     </div>
                     <div class='folls-box'>
                     <div class='main-folls'>
-                        <div class='folls-list'>
-                            <div class='folls-img'></div>
-                            <div class='folls-item'>
-                                <div class='folls-name'>
-                                    <span class='user-nama'>Rahmanita </span>
-                                    <span class='folls-uname'>@Rahmanita</span>
+                    <For each={(getfolls() || []) as getFollwers[]}>
+                        {(follower) => (
+                          <>
+                            <div class='folls-list'>
+                                <div class='folls-img'>
+                                    <img src={`/src/assets/profile/${follower.gambar}`} alt={follower.nama_akun} />
+                                </div>
+                                <div class='folls-item'>
+                                    <div class='folls-name'>
+                                        <span class='user-nama'>{follower.nama_akun}</span>
+                                        <span class='folls-uname'>@{follower.username}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <hr />
-                        <div class='folls-list'>
-                            <div class='folls-img'></div>
-                            <div class='folls-item'>
-                                <div class='folls-name'>
-                                    <span class='user-nama'>Rahmanita </span>
-                                    <span class='folls-uname'>@Rahmanita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class='folls-list'>
-                            <div class='folls-img'></div>
-                            <div class='folls-item'>
-                                <div class='folls-name'>
-                                    <span class='user-nama'>Rahmanita </span>
-                                    <span class='folls-uname'>@Rahmanita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class='folls-list'>
-                            <div class='folls-img'></div>
-                            <div class='folls-item'>
-                                <div class='folls-name'>
-                                    <span class='user-nama'>Rahmanita </span>
-                                    <span class='folls-uname'>@Rahmanita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class='folls-list'>
-                            <div class='folls-img'></div>
-                            <div class='folls-item'>
-                                <div class='folls-name'>
-                                    <span class='user-nama'>Rahmanita </span>
-                                    <span class='folls-uname'>@Rahmanita</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
+                        </>
+                        )}
+                    </For>
                         </div>
                     </div>
                 </div>

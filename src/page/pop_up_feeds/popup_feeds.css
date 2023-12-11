@@ -127,8 +127,18 @@
 }
 
 .link {
+    align-items: center;
+    justify-content: end;
+    display: flex;
     color: rgb(50, 50, 233);
-    width: 10vw;
+    width: 38vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.link span {
+    width: 20vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

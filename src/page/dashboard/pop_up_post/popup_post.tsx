@@ -4,6 +4,7 @@ import './popup_post.css';
 import 'daisyui/dist/full.css';
 import { useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
+import { format } from 'date-fns';
 
 interface PopUpPostProps {
   onClose: () => void;
@@ -44,7 +45,6 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
 
         const userDataString = sessionStorage.getItem('userData');
         const akun_id = userDataString ? JSON.parse(userDataString).akun_id : '';
-
         const requestData = {
           post_id: 0,
           akun_id,
@@ -52,8 +52,9 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
           deskripsi: (document.querySelector('textarea') as HTMLTextAreaElement)?.value || '',
           tag: selectedTag(),
           link: (document.querySelector('.bg-link input') as HTMLInputElement)?.value || '',
+          // created_at: format(new Date(), 'yyyy-MM-dd HH:mm:ss.SSS'),
         };
-
+        
         const formResponse = await fetch('/api/postingan/create', {
           method: 'POST',
           headers: {
