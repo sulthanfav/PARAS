@@ -2,6 +2,7 @@ import { Component } from "solid-js";
 import { A } from "@solidjs/router";
 import { Icon } from "@iconify-icon/solid";
 import './home_search.css';
+import '../dashboard/dashboard_umkm.css'
 
 const HomeSearchUser: Component = () => {
     return (

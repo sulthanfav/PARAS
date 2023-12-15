@@ -50,6 +50,14 @@
 .btnedit{
     /* background-color: antiquewhite; */
     margin: 0.5vw;
+    /* margin-left: 4vw; */
+    width: 14vw;
+    height: 25px;
+}
+.btnedit-sett{
+    /* background-color: antiquewhite; */
+    margin: 0.5vw;
+    margin-left: 4vw;
     width: 14vw;
     height: 25px;
 }
@@ -80,8 +88,8 @@
 }
 
 .bodyform{
-    width: 909px;
-    height: 70px;
+    /* width: 909px; */
+    /* height: 70px; */
     margin: 1vw;
 
 }

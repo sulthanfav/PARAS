@@ -3,6 +3,21 @@
     margin-left: 15vw;
     width: 85vw;
     height: auto;
+    overflow-y: auto;
+    overflow-X: hidden;
+    max-height: 90vh;
+}
+
+.bg-all::-webkit-scrollbar {
+    width: 12px;
+}
+
+.bg-all::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.bg-all::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 /* .titleprofile{
@@ -86,21 +101,63 @@
 }
 
 .bodyheader-profile{
+    margin-bottom: 1vh;
     display: flex;
     /* width: 85vw; */
 }
 
 .ava-profile{
     border-radius: 100%;
-    width: 10vw;
-    height: 8vh;
+    width: 9vw;
+    height: 18vh;
     background-color: tan;
-    object-fit: cover;
+    margin-right: 1vw;
+}
+.profile-legend .ava-profile{
+    border-radius: 100%;
+    width: 9vw;
+    height: 18vh;
+    background-color: tan;
+    /* margin-right: 1vw; */
 }
 
 .ava-profile img {
+    object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: inherit;
+}
+
+/* Add this to your existing CSS or create a new CSS file */
+.profile-legend {
+    border: 2px solid rgba(224, 134, 74, 0.2);
+    /* You can adjust the border color and width */
+    border-radius: 10px;
+    /* Adjust border-radius as needed */
+    padding: 10px;
+    /* Add padding to the legend */
+    /* margin-bottom: 20px; */
+    /* Adjust margin as needed */
+    margin-right: 1vw;
+}
+
+.icon-legend {
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.profile-legend legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    /* Adjust font size as needed */
+}
+
+.profile-legend button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .nama-usn{
@@ -113,14 +170,31 @@
 .profile-name{
     margin-top: 3vh;
     margin-bottom: 0vh;
-    width: 177px;
-    color: #333;
+    width: 60vw;
+    /* color: #333; */
+    color: #746f6f;
     font-family: Montserrat;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     /*line-height: 32px; /* 133.333% */
     letter-spacing: 0.24px;
+
+}
+.profile-name-input{
+    background-color: #FFF;
+    /* margin-top: 3vh; */
+    margin-left: 1vw;
+    width: 63vw;
+    /* color: #333; */
+    color: #746f6f;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    /*line-height: 32px; /* 133.333% */
+    letter-spacing: 0.24px;
+    border-radius: 20px;
 }
 
 .line-profile{
@@ -145,6 +219,9 @@
 
 .bodycontent-profile{
     margin-left: 1vw;
+}
+.bodycontent-profile-edit{
+    margin-left: 11vw;
 }
 
 .form-profile{
@@ -179,26 +256,112 @@
 }
 
 .name-usn {
-    width: 63vw;
+    width: 60vw;
 }
 
 .nama-usn hr {
-    background: rgba(51, 51, 51, 0.40);
+    /* background: rgba(51, 51, 51, 0.40); */
+    color: aqua;
+    
 }
 
 .profile-isi {
+
         border-radius: 20px;
         border: 1px solid rgba(124, 51, 9, 0.30);
         background: #FFF;
-        width: 909px;
-        height: 37px;
+        width: 71vw;
+        height: 45px;
         margin-top: 0.5vw;
         flex-shrink: 0;
-        /* padding: 0.5vw; */
+        padding: 0.5vw;
         display: flex;
         align-items: center;
+}
+.profile-isi-name {
+        border-radius: 20px;
+        border: 1px solid rgba(124, 51, 9, 0.30);
+        background: #FFF;
+        width: 60vw;
+        height: 45px;
+        margin-top: 0.5vw;
+        margin-bottom: 1vh;
+        flex-shrink: 0;
+        padding: 0.5vw;
+        display: flex;
+        align-items: center;
+}
+.profile-isi-desc {
+
+        border-radius: 20px;
+        border: 1px solid rgba(124, 51, 9, 0.30);
+        background: #FFF;
+        width: 71vw;
+        height: 15vh;
+        margin-top: 0.5vw;
+        flex-shrink: 0;
+        padding: 0.5vw;
+        display: flex;
+        /* align-items: center; */
 }
 
 .profile-isi span {
     margin-left: 2vh;
+    color: #746f6f;
+}
+.profile-isi-desc span {
+    margin-left: 2vh;
+    color: #746f6f;
+}
+
+.button-submit-prof button {
+    font-size: 16px;
+    position: relative;
+    margin: auto;
+    padding: 1em 2.5em 1em 2.5em;
+    border: none;
+    background: #fff;
+    transition: all 0.1s linear;
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+}
+
+.button-submit-prof button:active {
+    transform: scale(0.95);
+}
+
+.button-submit-prof button span {
+    color: #464646;
+}
+
+.button-submit-prof button .border {
+    position: absolute;
+    border: 0.15em solid #7c330965;
+    transition: all 0.3s 0.08s linear;
+    top: 50%;
+    left: 50%;
+    width: 9em;
+    height: 3em;
+    transform: translate(-50%, -50%);
+}
+
+.button-submit-prof button:hover .border {
+    display: block;
+    width: 9.9em;
+    height: 3.7em;
+}
+
+.full-rounded {
+    border-radius: 2em;
+}
+
+.button-submit-prof {
+    display: flex;
+    justify-content: end;
+}
+
+.bodyheader-profile hr, .cont-body-profile hr {
+    color: rgba(224, 134, 74, 0.2);
+    font-size: 100px;
+    border-top-width: 4px;
+    border-radius: 10px;
 }

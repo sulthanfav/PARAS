@@ -35,9 +35,19 @@ export type BiodataUmkm = {
   kontak_bisnis: string;
   kategori: string;
   akun_id: string;
-  gambar: String;
+  gambar: string;
 };
 
+export type BiodataPersonal = {
+  tempat_tanggal_lahir: string;
+  alamat: string;
+  jenis_kelamin: string;
+  akun_id: string;
+  gambar: string;
+};
+
+
+//===================================================
 export async function fetchBiodataUmkm() {
   const userDataString = sessionStorage.getItem("userData");
 
@@ -63,18 +73,36 @@ export async function fetchBiodataUmkm() {
 
   return biodataUmkm;
 }
+//===================================================
+export async function fetchBiodataPersonal() {
+  const userDataString = sessionStorage.getItem("userData");
+
+  if (!userDataString) {
+    // Handle the case where userData is not available in sessionStorage
+    return null;
+  }
+
+  const userData = JSON.parse(userDataString);
+  const akun_id = userData?.akun_id;
+
+  if (!akun_id) {
+    // Handle the case where akun_id is not available in userData
+    return null;
+  }
+
+  const response = await fetch(`/api/biodata_pengguna/${akun_id}`);
+  const biodataPersonal = await response.json() as BiodataPersonal;
+  console.log(biodataPersonal);
+
+  // Store the fetched data in sessionStorage
+  sessionStorage.setItem("biodataUmkm", JSON.stringify(biodataPersonal));
+
+  return biodataPersonal;
+}
 
 //-------------------------------------------------------------------
-// export type BiodataUmkm = {
-//   "alamat_toko": string,
-//   "deskripsi_toko": string,
-//   "nib": string,
-//   "kontak_bisnis": string,
-//   "kategori": string,
-//   "akun_id": string
-// }
 
-// export async function fetchBiodataUmkm() {
+// export async function fetchBiodataPersonal() {
 //   const userDataString = sessionStorage.getItem("userData");
 
 //   if (!userDataString) {
@@ -88,7 +116,7 @@ export async function fetchBiodataUmkm() {
 //   const response = await fetch(`/api/biodata_umkm/${akun_id}`);
 //   const result = await response.json();
 
-//   const biodataUmkm = result as BiodataUmkm;
+//   const biodataUmkm = result as BiodataPersonal;
 //   console.log(biodataUmkm);
 
 //   // You can modify the return statement based on your requirements

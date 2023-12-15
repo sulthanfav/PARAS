@@ -7,6 +7,12 @@ import '../profil_umkm/profil_umkm.css';
 import '../profil_user/profil_user.css';
 import { fetchBiodataUmkm, BiodataUmkm } from '../../api/akun';
 import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
+import { fetchCountFolls } from '../../api/followers';
+
+interface CountFolls {
+  count: number;
+  // Sesuaikan dengan properti lain yang mungkin ada
+}
 
 // Komponen PengaturanUMKM
 const PengaturanUMKM: Component = () => {
@@ -64,6 +70,36 @@ console.log(deskripsiToko);
         setLogout(false);
     };
   //------------------------------------------------------
+    const [folls, setFolls] = createSignal<CountFolls>();
+  onMount(async () => {
+    try {
+      const dataFolls = await fetchCountFolls();
+      console.log("test_data_follower", dataFolls)
+      if (dataFolls) {
+        setFolls(dataFolls);
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
+    }
+  });
+  //------------------------------------------------------
+  const [gambarProfile, setGambarProfile] = createSignal<BiodataUmkm[]>([]);
+  onMount(async () => {
+    try {
+      const biodataUmkmArray = await fetchBiodataUmkm();
+      // console.log(biodataUmkmArray);
+
+      if (Array.isArray(biodataUmkmArray)) {
+        setGambarProfile(biodataUmkmArray);
+      } else {
+        console.error('Data yang diterima bukan array GambarPostingan');
+      }
+    } catch (error) {
+      console.error("Error fetching Postingan", error);
+    }
+
+  });
+  const urlGambar = (namaGambar: string) => `/src/assets/profile/${namaGambar}`;
   
   return (
     <>
@@ -76,34 +112,36 @@ console.log(deskripsiToko);
           </nav>
         <div class='content'>
           <div class='side'>
-            <div class='profile-side'>
-              <img src="/src/assets/Ellipse_14.png" alt="" />
-              <span class='nama'>
-                <h2>{namaAkun()}</h2>
-              </span>
-              <span class='deskripsi'>
-                <p>{deskripsiToko()}</p>
-              </span>
-              <A href="/umkm/folls">
-                <span class='folls'>
-                  <p class='p1'>Followers</p>
-                  <p>127</p>
-                </span>
-              </A>
-            </div>
-            <div class='side-menu'>
-              <ul>
-                <A href="/umkm/dashboard"><li> <Icon icon="ic:round-home" class='icon-side'></Icon>Beranda</li></A>
-                <A href="/umkm/notifumkm"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></A>
-                <A href="/umkm/ProfilUMKM"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></A>
-                <A href="/umkm/PengaturanUMKM"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></A>
-                <div onClick={openLogoutPopUp}>
-                <li><Icon icon="solar:logout-2-bold" class='icon-side'></Icon>Keluar</li>
+                    <div class='profile-side'>
+                        <div class='profile-img'>
+                            {gambarProfile().map((gambar) => (
+                                <img src={urlGambar(gambar.gambar.toString())} alt="" />
+                            ))}
+                        </div>
+                        <span class='nama'>
+                            <h2>{namaAkun()}</h2>
+                        </span>
+                        <span class='deskripsi'>
+                            <p>{gambarProfile().map((deskripsi) => deskripsi.deskripsi_toko)}</p>
+                        </span>
+                        <A href="/umkm/folls"><span class='folls'>
+                            <p class='p1'>Followers</p>
+                            <p>{folls()?.count}</p>
+                        </span></A>
+                    </div>
+                    <div class='side-menu'>
+                        <ul>
+                            <A href="/umkm/dashboard"><li> <Icon icon="ic:round-home" class='icon-side'></Icon>Beranda</li></A>
+                            <A href="/umkm/notifumkm"><li><Icon icon="mingcute:notification-fill" class='icon-side'></Icon> Notifikasi</li></A>
+                            <A href="/umkm/ProfilUMKM"><li><Icon icon="mdi:user" class='icon-side'></Icon> Profil</li></A>
+                            <A href="/umkm/PengaturanUMKM"><li><Icon icon="icon-park-solid:setting-one" class='icon-side'/>Pengaturan</li></A>
+                            <div onClick={openLogoutPopUp}>
+                            <li><Icon icon="solar:logout-2-bold" class='icon-side'></Icon>Keluar</li>
+                            </div>
+                            {logout() && <Popup_logout onClose={closeLogoutPopUp} />}
+                        </ul>
+                    </div>
                 </div>
-                {logout() && <Popup_logout onClose={closeLogoutPopUp} />}
-              </ul>
-            </div>
-          </div>
 
           <div class="bg-all">
             <div class='titleprofile'>

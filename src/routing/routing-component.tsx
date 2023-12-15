@@ -2,6 +2,7 @@ import { lazy, type Component } from 'solid-js';
 import { createSignal, onCleanup } from "solid-js";
 import { useStore } from '../integration-extension/store';
 import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router' ;
+import home_profile_umkm from '../page/home-personal/home_profile_umkm/home_profile_umkm';
 
 interface UserData {
     "nama_akun": String,
@@ -129,6 +130,7 @@ const Root: Component = () => {
               <Route path="/HomeSearchUser" component={ HomeSearchUser } />
               <Route path="/PengaturanUser" component={ PengaturanUser } />
               <Route path="/PengaturanUser2" component={ PengaturanUser2 } />
+              <Route path="/HomeProfileUmkm" component={ Home_profile_umkm } />
               {/* <Route path="/PopupLogoutUMKM" component={ <PopupLogoutUMKM/> } /> */}
               {/* <Route path="/LoginUMKM" component={ <LoginUMKM/> } /> */}
               {/* <Route path="/Popup_logout" component={ <Popup_logout/> } /> */}
