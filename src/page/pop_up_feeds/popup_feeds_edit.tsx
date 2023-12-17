@@ -5,7 +5,14 @@ import "daisyui/dist/full.css";
 import { A, useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 
-const popup_feeds_edit: Component = () => {
+
+interface PopUpFeedsEditProps {
+  onClose: () => void;
+  
+}
+
+
+const Popup_feeds_edit: Component<PopUpFeedsEditProps> = (props) => {
 
     return (
         <>
@@ -47,4 +54,4 @@ const popup_feeds_edit: Component = () => {
         </>
         )};
 
-export default popup_feeds_edit;
+export default Popup_feeds_edit;

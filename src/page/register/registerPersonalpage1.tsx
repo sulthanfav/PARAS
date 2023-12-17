@@ -1,33 +1,52 @@
 // Import statement untuk mengimpor modul yang diperlukan
 import { Component, createSignal } from 'solid-js';
-import { A } from '@solidjs/router';
+import { A, useNavigate } from '@solidjs/router';
 import './registerPersonalpage1.css'; // File stylesheet eksternal
 import "daisyui/dist/full.css"; // File stylesheet eksternal dari daisyui
 import { Icon } from "@iconify-icon/solid"; // Komponen Icon dari modul solid
+import './registerUMKMpage1.css'
 // Import LogoImage dari file logo.tsx - belum digunakan
 // import LogoImage from './logo.tsx';
 
 // Definisi komponen RegisterPersonalPage1 sebagai functional component
 const RegisterPersonalPage1: Component = () => {
     // Mengembalikan elemen JSX
+  const [formData, setFormData] = createSignal({
+    namaPersonal: '',
+    emailPersonal: '',
+    usernamePersonal: '',
+    passwordPersonal: '',
+    confirmPassword: '',
+  });
+
+  const navigate = useNavigate();
+
+  const handleNextPage = () => {
+    if (formData().passwordPersonal !== formData().confirmPassword) {
+      alert('Password and Confirm Password must match.');
+    } else {
+      // Save data to session storage
+      sessionStorage.setItem('formData', JSON.stringify(formData()));
+
+      // Navigate to the next page
+      navigate('/BeforeLogin/RegisterPersonalPage2');
+    }
+  };
     return (
         <>
             {/* Bagian navigasi */}
             <div class='body'>
                 <nav>
-                    {/* Link untuk kembali ke dashboard */}
-                    <A href="/dashboard">
-                        {/* Logo */}
+                    <A href="/BeforeLogin/Paras">
                         <img class='logo' src="/src/assets/Group_154.png" alt="" />
                     </A>
-                    {/* Tombol navigasi */}
                     <div class='button-navigation-bar'>
-                        {/* Tombol Daftar */}
+                      <A href="/BeforeLogin/Paras">
                         <button class='btn-daftar'> Daftar </button>
-                        {/* Link ke RegisterUMKMPage1 - belum digunakan */}
-                        <a href="/RegisterUMKMPage1"></a>
-                        {/* Tombol Masuk */}
+                      </A>
+                        <A href="/BeforeLogin/Login">
                         <button class='btn-masuk'> Masuk </button>
+                        </A>
                     </div>
                 </nav>
                 {/* Konten utama */}
@@ -40,36 +59,63 @@ const RegisterPersonalPage1: Component = () => {
                                 <span>Gabung di <span class='text-paras'>Paras</span>, tempat terbaik untuk memajukan bisnis UMKM Anda!</span>
                                 <p>Masukkan data diri Anda untuk mendaftarkan akun Paras.</p>
                             </div>
-                            <div class = 'form-regist-personal'>
-                            <div class = 'nama-personal'>
+                            <form class='form-regist-personal'>
+                                <div class='nama-personal'>
                                 <label for="nama-personal">Nama </label>
-                                <input class="input" placeholder="(wajib diisi)"></input>
-                            </div>
-                            <div class = 'email-personal'>
+                                <input
+                                    class="input"
+                                    placeholder="(wajib diisi)"
+                                    value={formData().namaPersonal}
+                                    onInput={(e) => setFormData({ ...formData(), namaPersonal: e.target.value })}
+                                />
+                                </div>
+                                <div class='email-personal'>
                                 <label for="email-personal">Email</label>
-                                <input class="input" placeholder="(wajib diisi)"></input>
-                            </div>
-                            <div class = 'username-personal'>
+                                <input
+                                    class="input"
+                                    placeholder="(wajib diisi)"
+                                    value={formData().emailPersonal}
+                                    onInput={(e) => setFormData({ ...formData(), emailPersonal: e.target.value })}
+                                />
+                                </div>
+                                <div class='username-personal'>
                                 <label for="username-personal">Username</label>
-                                <input class="input" placeholder="(wajib diisi)"></input>
-                            </div>
-                            <div class = 'password-personal'>
-                                <div class = 'left-box-personal'>
+                                <input
+                                    class="input"
+                                    placeholder="(wajib diisi)"
+                                    value={formData().usernamePersonal}
+                                    onInput={(e) => setFormData({ ...formData(), usernamePersonal: e.target.value })}
+                                />
+                                </div>
+                                <div class='password-personal'>
+                                <div class='left-box-personal'>
                                     <label for="password-personal">Password</label>
-                                    <input class="input-password-personal" placeholder="(wajib diisi)"></input>
+                                    <input
+                                    class="input-password-personal input-password"
+                                    placeholder="(wajib diisi)"
+                                    type="password"
+                                    value={formData().passwordPersonal}
+                                    onInput={(e) => setFormData({ ...formData(), passwordPersonal: e.target.value })}
+                                    />
                                 </div>
-                                <div class = 'right-box-personal'>
+                                <div class='right-box-personal'>
                                     <label for="confirm-password-personal">Confirm Password</label>
-                                    <input class="input-confirm-password-personal" placeholder="(wajib diisi)"></input>
+                                    <input
+                                    class="input-confirm-password-personal input-password"
+                                    placeholder="(wajib diisi)"
+                                    type="password"
+                                    value={formData().confirmPassword}
+                                    onInput={(e) => setFormData({ ...formData(), confirmPassword: e.target.value })}
+                                    />
                                 </div>
-                            </div>
-                            <a href=""></a>
-                            <button class = 'btn-next-page'>Halaman Berikutnya
-                                    <div class="arrow-wrapper">
-                                        <div class="arrow"></div>
-                                    </div>
-                            </button>
-                        </div>
+                                </div>
+                                <button class='btn-next-page' type='button' onClick={handleNextPage}>
+                                Halaman Berikutnya
+                                <div class="arrow-wrapper">
+                                    <div class="arrow"></div>
+                                </div>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

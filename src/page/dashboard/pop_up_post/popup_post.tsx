@@ -5,6 +5,7 @@ import 'daisyui/dist/full.css';
 import { useNavigate } from '@solidjs/router';
 import { Icon } from '@iconify-icon/solid';
 import { format } from 'date-fns';
+// import '../../register/registerUMKMpage1.css'
 
 interface PopUpPostProps {
   onClose: () => void;
@@ -106,13 +107,13 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
             <div class='cont-poppost'>
               <Icon icon='solar:home-add-bold' class='icon-cont-post'></Icon>
               <div class='post-input'>
-                <input type='text' placeholder='Judul Unggahan' class='judul-post' />
+                <input class="input judul-post" placeholder="text" />
                 <br />
                 <hr />
-                <textarea name='' id='' cols='76' rows='2' placeholder='Deskripsi Unggahan'></textarea>
+                <textarea name='' id='' cols='76' rows='2' placeholder='Deskripsi Unggahan' class='input'></textarea>
               </div>
             </div>
-            <select name='' id='' value={selectedTag()} onChange={(e) => setSelectedTag(e.currentTarget.value)}>
+            <select name='' id='' value={selectedTag()} onChange={(e) => setSelectedTag(e.currentTarget.value)} class='select-tag'>
               <option value='Fashion'>----Pilih Tag Anda!----</option>
               <option value='Fashion'>Fashion</option>
               <option value='Makanan'>Makanan</option>
@@ -129,25 +130,35 @@ const Popup_post: Component<PopUpPostProps> = (props) => {
                 multiple // Izinkan pengguna untuk memilih beberapa gambar
               />
               <label for='file-upload'>
-                {imageUrls().length > 0 ? (
-                  <div class='image-preview-container'>
-                    <For each={imageUrls()}>
-                      {(imageUrl) => <img src={imageUrl} alt='Selected Image' width='100' height='100' />}
-                    </For>
-                  </div>
-                ) : (
+
                   <div class='bg-attc'>
                     <Icon icon='mingcute:attachment-line' class='attc-icon'></Icon>
                   </div>
-                )}
+
               </label>
-              <div class='bg-link'>
-                <Icon icon='ph:link-bold' class='link-icon'></Icon>
-                <input type='text' name='' id='' placeholder='Input Link Disini' />
-              </div>
-              <button onClick={handleSubmit}>Unggah</button>
+                <div class='bg-link'>
+                  <label for='link-input'>
+                    <Icon icon='ph:link-bold' class='link-icon'></Icon>
+                  </label>
+                  <input type='text' id='link-input' placeholder='Input Link Disini' />
+                </div>
+
+              <button class='button-submit-post' onClick={handleSubmit}>Unggah</button>
             </div>
           </form>
+          <div class='pre-img'>
+
+          {imageUrls().length > 0 && (
+              <For each={imageUrls()}>
+                {(imageUrl) => (
+                  <div class='image-preview-container'>
+                    <img src={imageUrl} alt='Selected Image' />
+                  </div>
+                )}
+              </For>
+          )}
+
+          </div>
         </div>
       </div>
     </>

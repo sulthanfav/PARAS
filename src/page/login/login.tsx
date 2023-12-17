@@ -7,6 +7,7 @@ import { Icon } from "@iconify-icon/solid";
 // import LogoImage from './logo.tsx';
 import "../dashboard/dashboard_umkm.css"
 import "../paras/paras.css"
+import '../register/registerUMKMpage1.css'
 
 
 interface LoginProps {
@@ -55,28 +56,29 @@ const Login: Component<LoginProps> = (props) => {
   };
 
   const ActionLogin1 = async () => {
-    console.log(`test ${username()} ${password()}`)
-      try {
-      const data = await fetchLogin();
-      // Cek apakah data login berhasil atau tidak
-      if (data) {
-        if (data !== null) {
-          navigate("/dashboard", { replace: true});
+    console.log(`test ${username()} ${password()}`);
+    try {
+        const data = await fetchLogin();
+        // Cek apakah data login berhasil atau tidak
+        if (data) {
+            if (data !== null) {
+                navigate("/dashboard", { replace: true });
+            }
+            // Login berhasil, Anda dapat menyimpan data pengguna di sessionStorage atau localStorage
+            sessionStorage.setItem('userData', JSON.stringify(data));
+            // Redirect ke halaman utama atau halaman lain yang sesuai
+            window.location.assign('/');
+        } else {
+            // Handle login gagal di sini
+            console.error('Login failed');
+            window.alert('Username or password is incorrect. Please try again.'); // Display alert
         }
-          // Login berhasil, Anda dapat menyimpan data pengguna di sessionStorage atau localStorage
-          sessionStorage.setItem('userData', JSON.stringify(data));
-          // Redirect ke halaman utama atau halaman lain yang sesuai
-          window.location.assign('/');
-      } else {
-          // Handle login gagal di sini
-          console.error('Login failed');
-      }
-      } catch (error) {
-      // Handle kesalahan saat melakukan permintaan login
-      console.error(error);
-      }
-
-  };
+    } catch (error) {
+        // Handle kesalahan saat melakukan permintaan login
+        console.error(error);
+        window.alert('An error occurred during login. Please try again later.'); // Display alert for other errors
+    }
+};
 
     // Mengembalikan elemen JSX
     return (
@@ -85,18 +87,18 @@ const Login: Component<LoginProps> = (props) => {
             <div class='body'>
                 <nav>
                     {/* Link untuk kembali ke dashboard */}
-                    <A href="/dashboard">
+                    <A href="/BeforeLogin/Paras">
                         {/* Logo */}
                         <img class='logo' src="/src/assets/Group_154.png" alt="" />
                     </A>
                     {/* Tombol navigasi */}
                     <div class='button-navigation-bar'>
                         {/* Tombol Daftar */}
-                        <A href="/paras">
+                        <A href="/BeforeLogin/paras">
                         <div class='btn-daftar'> Daftar </div>
                         {/* Link ke RegisterUMKMPage1 - belum digunakan */}
                         </A>
-                        <A href="/login">
+                        <A href="/BeforeLogin/login">
                         {/* Tombol Masuk */}
                         <div class='btn-masuk'> Masuk </div>
                         </A>
@@ -109,21 +111,21 @@ const Login: Component<LoginProps> = (props) => {
                         {/* Isi sesuai kebutuhan konten */}
                         <div class='login-cont'>
                             <div class='headline-login'>
-                                <span>
-                                    Selamat Datang di <span>Paras</span>!
+                                <span class='welcome'>
+                                    Selamat Datang di <span class='welcome-paras'>Paras</span>!
                                 </span>
                                 <span> <br />
-                                    Masuk untuk 
+                                    Masuk untuk mengelola dan memajukan UMKM lokal!
                                 </span>
                             </div>
                             <div class='login-form-cont'>
                                 <div class='cont-login-input-form'>
-                                    <label>Usernam/Email</label>
-                                    <input type="text" name="" id="" value={username()} onInput={(e) => setUsername(e.currentTarget.value)}/>
+                                    <label>Username/Email</label>
+                                    <input class='input' type="text" name="" id="" value={username()} onInput={(e) => setUsername(e.currentTarget.value)}/>
                                 </div>
                                 <div class='cont-login-input-form'>
-                                    <label>Password</label>
-                                    <input type="text" name="" id="" value={password()} onInput={(e) => setPassword(e.currentTarget.value)} />
+                                    <label>Kata Sandi</label>
+                                    <input class='input' type="password" name="" id="" value={password()} onInput={(e) => setPassword(e.currentTarget.value)} />
                                 </div>
                                 <button  onClick={ActionLogin1}>
                                     Masuk

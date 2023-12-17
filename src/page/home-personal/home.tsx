@@ -90,16 +90,18 @@ const [logout, setLogout] = createSignal(false);
   //===============================================================
     const [postingan, setPostingan] = createSignal<PostinganPersonal[]>([]);
   onMount(async () => {
-    try {
-      const dataPostingan = await fetchPostinganPersonal();
-      // console.log("test_data_posting", dataPostingan)
-      if (dataPostingan) {
-        setPostingan(dataPostingan);
-      }
-    } catch (error) {
-      console.error("Error fetching Postingan", error);
+  try {
+    const dataPostingan = await fetchPostinganPersonal();
+    if (dataPostingan) {
+      // Shuffle the array randomly
+      const shuffledPostingan = dataPostingan.sort(() => Math.random() - 0.5);
+      setPostingan(shuffledPostingan);
     }
-  });
+  } catch (error) {
+    console.error("Error fetching Postingan", error);
+  }
+});
+
 
   //===============================================================
     const renderGambar = (gambar: GambarPersonal[], postPath: string) => (
@@ -116,7 +118,7 @@ const [logout, setLogout] = createSignal(false);
   const [FeedsPersonal, setFeedsPersonal] = createSignal(false);
   const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
 const [selectedPost, setSelectedPost] = createSignal<PostinganPersonal | null>(null);
-const openFeedsPopUp = async (post_id: number | null) => {
+const openFeedsPopUp = async (post_id: number | null, akun_id: number | null) => {
   if (post_id !== null) {
     const selected = postingan().find(post => post.post_id === post_id) || null;
     setFeedsPersonal(true);
@@ -124,8 +126,12 @@ const openFeedsPopUp = async (post_id: number | null) => {
     setSelectedPost(selected);
 
     const result = await fetchPostinganPersonalSelected(post_id);
+
+    // Meneruskan akun_id ke Popup_feeds_personal
+    
   }
 };
+
 
   const closeFeedsPopUp = () => {
     setFeedsPersonal(false);
@@ -139,15 +145,15 @@ const openFeedsPopUp = async (post_id: number | null) => {
     setSearchInput(e.target.value);
   };
 
-  const handleSearchInputEnter = (e: any) => {
-    if (e.key === 'Enter') {
-      // Save the searchInput value to sessionStorage or another suitable storage
-      sessionStorage.setItem('searchInput', searchInput());
-      
-      // Navigate to the homesearchuser route
-      navigate('/personal/homesearchuser');
-    }
-  };
+const handleSearchInputEnter = (e: any) => {
+  console.log("Nilai input pencarian:", searchInput());
+  if (e.key === 'Enter') {
+    // Kode yang sudah ada
+    sessionStorage.setItem('searchInput', searchInput());
+    navigate('/personal/homesearchuser');
+  }
+};
+
 
   //=================================================================
     const [likeClicked, setLikeClicked] = createSignal(false);
@@ -232,7 +238,8 @@ const openFeedsPopUp = async (post_id: number | null) => {
                             
                             <For each={postingan()} fallback={<div class="pinwheel"><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div></div>}>{(post: PostinganPersonal) => (
                             // <div class='post-home'>
-                                <div class={`postan-home${post.gambar.length}`} onClick={() => {setSelectedPostId(post?.post_id ?? null); openFeedsPopUp(post?.post_id ?? null);}}>
+                                <div class={`postan-home${post.gambar.length}`} onClick={() => {setSelectedPostId(post?.post_id ?? null); openFeedsPopUp(post?.post_id ?? null, post?.akun_id ?? null);}}>
+
 
                                 <div class='profile-post-home'>
                                     <div class='img-profile-post-home'>
@@ -265,88 +272,7 @@ const openFeedsPopUp = async (post_id: number | null) => {
                                 </div>
                             // </div>
                                 )}</For>
-                                {FeedsPersonal() && <Popup_feeds_personal onClose={closeFeedsPopUp} postId={selectedPostId()} postinganselect={selectedPost()} />}
-                            
-                            <div class='post-home'>
-                                <div class='profile-post-home'>
-                                    <div class='img-profile-post-home'>
-                                        <img src="/src/assets/profile_test.png" alt="" />
-                                    </div>
-                                    <div class='name-profile-post-home'>
-                                        <span class='name'>Numani</span>
-                                        <span class='judul'>Baju keren sepanjang masa</span>
-                                    </div><br />
-                                </div>
-                                <div class='desc-post-home'>
-                                    <span class=''>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </span>
-                                </div>
-                                <hr />
-                                <div class='pic-post-home'>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                </div>
-                                <hr />
-                                <div class='intr-home'>
-                                    <Icon  icon="flat-color-icons:like" class='icon-intr-feeds'></Icon>
-                                    <span>127</span>
-                                    <Icon  icon="iconamoon:comment-fill" class='icon-intr-feeds'></Icon>
-                                    <span>345</span>
-                                    <Icon  icon="ph:link-bold" class='icon-intr-feeds'></Icon>
-                                    <span>Link Produk</span>
-                                </div>
-                                <hr />
-                                <div class='cont-comment-post'>
-                                    <div class='coment-post'>
-                                    <div class='img-profile-post-home'>
-                                        <img src="/src/assets/profile_test.png" alt="" />
-                                    </div>
-                                    <div class='name-profile-post-home'>
-                                        <span class='name'>Numani</span>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class='post-home'>
-                                <div class='profile-post-home'>
-                                    <div class='img-profile-post-home'>
-                                        <img src="/src/assets/profile_test.png" alt="" />
-                                    </div>
-                                    <div class='name-profile-post-home'>
-                                        <span class='name'>Numani</span>
-                                        <span class='judul'>Baju keren sepanjang masa</span>
-                                    </div><br />
-                                </div>
-                                <div class='desc-post-home'>
-                                    <span class=''>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </span>
-                                </div>
-                                <hr />
-                                <div class='pic-post-home'>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                    <div class='pic-post'></div>
-                                </div>
-                                <hr />
-                                <div class='intr-home'>
-                                    <Icon  icon="flat-color-icons:like" class='icon-intr-feeds'></Icon>
-                                    <span>127</span>
-
-                                    <div class='intr-home-comment'>
-                                        <Icon  icon="iconamoon:comment-fill" class='icon-intr-home'></Icon>
-                                        <input type="text" placeholder='Tuliskan Komentar Anda...'/>
-                                    </div>
-                                    
-                                    <Icon  icon="ph:link-bold" class='icon-intr-feeds'></Icon>
-                                    <span>Link Produk</span>
-                                </div>
-                            </div>
+                                {FeedsPersonal() && <Popup_feeds_personal onClose={closeFeedsPopUp} postId={selectedPostId()} postinganselect={selectedPost()} akun_id={selectedPost()?.akun_id || null} />}
 
                         </div>
                     </div>

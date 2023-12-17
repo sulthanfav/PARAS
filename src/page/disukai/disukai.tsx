@@ -1,5 +1,6 @@
 import { Component, onMount, createSignal, onCleanup } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
+import { For } from 'solid-js/web';
 import { Icon } from "@iconify-icon/solid";
 import './disukai.css';
 import '../home_search/home_search.css'
@@ -7,12 +8,10 @@ import { BiodataPersonal, fetchBiodataPersonal } from "../../api/akun";
 import { CountFollsPersonal, fetchCountFollsPersonal } from "../../api/followers";
 import Popup_logout from "../../assets/popup/popup_logout/popup_logout";
 import '../home-personal/home.css'
+import {  fetchPostinganByLike,  PostinganPersonal, GambarPersonal } from '../../api/postingan';
+import '../dashboard/dashboard_umkm.css'
+import '../home-personal/home_profile_umkm/home_profile_umkm.css'
 
-// Function to define the route
-const pathFn = (e: any) => {
-    console.log('pathFn', e);
-    return '/DisukaiUser';
-}
 
 const DisukaiUser: Component = () => {
 //=======================================
@@ -76,6 +75,32 @@ const [logout, setLogout] = createSignal(false);
     }
   });
 
+  //=========================================
+  const [postingan, setPostingan] = createSignal<PostinganPersonal[]>([]);
+  onMount(async () => {
+  try {
+    const dataPostingan = await fetchPostinganByLike();
+    if (dataPostingan) {
+      // Shuffle the array randomly
+      const shuffledPostingan = dataPostingan.sort(() => Math.random() - 0.5);
+      setPostingan(shuffledPostingan);
+    }
+  } catch (error) {
+    console.error("Error fetching Postingan", error);
+  }
+});
+
+
+  //===============================================================
+    const renderGambar = (gambar: GambarPersonal[], postPath: string) => (
+    <div class={`cont-gambar`}>
+      <For each={gambar}>{(g: GambarPersonal, i) => (
+        <div class={`gambar-${i() + 1}`}>
+          <img src={`${postPath}/${g.nama_gambar}`} alt={`gambar-${i() + 1}`} />
+        </div>
+      )}</For>
+    </div>
+  );
 
 
     return (
@@ -129,91 +154,16 @@ const [logout, setLogout] = createSignal(false);
                 <div class="disukai-cont">
                 <div class='main'>
                     <div class='postan'>
-                        <div class='postan1'>
+                        <For each={postingan()} fallback={<div class="pinwheel"><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div></div>}>{(post: PostinganPersonal) => (
+                            <div class={`postan${post.gambar.length}`}>
                             <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
+                            <span class='judul'>{post.nama}</span>
                             <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
                             </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
+                            <span class='deskripsi1'>{post.deskripsi}</span>
+                            {renderGambar(post.gambar, '/src/assets/postingan')}
                         </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar2-1'></div>
-                                <div class='gambar2-2'></div>
-                                <div class='gambar2-3'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
-                        <div class='postan1'>
-                            <div class='headline'>
-                            <span class='judul'>Lorem Ipsum Dolor Sit Amet</span>
-                            <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
-                            </div>
-                            <span class='deskripsi1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo</span>
-                            <div class='cont-gambar'>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                                <div class='gambar1-1'></div>
-                            </div>
-                        </div>
+                        )}</For>
                     </div>
                 </div>
                 </div>

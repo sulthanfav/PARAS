@@ -64,7 +64,7 @@
     width: 45vw;
     height: 62vh;
     display: flex;
-    font-family: cursive;
+    font-family: monospace;
     font-size: xx-large;
     /* margin-top: 2vh; */
     /* display: grid; */
@@ -100,8 +100,10 @@
 }
 
 .edit-feeds {
+    width: 42vw;
     display: flex;
     margin-top: 1vh;
+    justify-content: center;
 }
 
 .ubah-feeds {
@@ -124,6 +126,7 @@
     border-radius: 30px;
     color: #FFF;
     text-align: center;
+    cursor: pointer;
 }
 
 .link {
@@ -190,6 +193,25 @@
     width: 28vw;
     height: 87vh;
     padding: 0.5vw;
+}
+
+.comment-cont-overflow {
+    overflow-y: auto;
+    overflow-X: hidden;
+    max-height: 76vh;
+
+}
+
+.comment-cont-overflow::-webkit-scrollbar {
+    width: 12px;
+}
+
+.comment-cont-overflow::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.comment-cont-overflow::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 .comment-pic {
@@ -267,4 +289,22 @@
     right: 0; */
     display: flex;
     align-items: center;
+    padding-left: 1vw;
+}
+
+.icon-intr-feeds {
+    font-size: 30px;
+}
+
+.inputan-comment{
+    border: none;
+    outline: none;
+    background-color: #FFF;
+    color: #333333;
+    width: 19vw;
+}
+
+.no-comment {
+    display: flex;
+    justify-content: center
 }

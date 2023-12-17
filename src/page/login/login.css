@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
 *{
-  font-style: Montserrat;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .background-registerUMKM {
@@ -448,7 +448,7 @@
 }
 
 .background-login {
-  background-image: url("src/assets/image/wicker-baskets-sale 1.png");
+  background-image: url("src/assets/image/high-angle-old-vessels-second-hand-market 2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -472,6 +472,7 @@
 .login-form-cont {
   display: flex;
   flex-direction: column;
+  margin-top: 1vh;
 }
 
 .cont-login-input-form {
@@ -485,6 +486,11 @@
   padding: 0.5vw;
   width: 39vw;
   border-radius: 20px;
+  margin-top: 0.5vh;
+}
+
+.cont-login-input-form label {
+  font-size: 14px;
 }
 
 .login-form-cont button{
@@ -497,3 +503,24 @@
   /* float: right; */
   margin-left: 29vw;
 }
+
+.welcome {
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0.24px;
+}
+
+.welcome-paras{
+  color: #7C3309;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0.24px;
+}
+

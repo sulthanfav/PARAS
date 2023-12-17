@@ -15,6 +15,7 @@
 .cont-header {
     display: flex;
     width: 49vw;
+    cursor: pointer;
 }
 
 .nama-judul {

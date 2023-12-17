@@ -12,6 +12,7 @@ import { Gambar, Postingan, fetchPostingan } from '../../api/postingan';
 import { fetchGambar } from '../../api/gambar_postingan';
 import { fetchPostinganSelected } from '../../api/postinganselected';
 import { fetchCountFolls } from '../../api/followers';
+import { fetchGetNotifikasi } from '../../api/notifikasi';
 // import './Popup_post';
 
 export type BiodataUmkm = {
@@ -27,6 +28,13 @@ export type BiodataUmkm = {
 interface CountFolls {
   count: number;
   // Sesuaikan dengan properti lain yang mungkin ada
+}
+
+interface GetNotifikasi{
+    nama_akun: string;  // Change 'String' to 'string'
+    gambar: string;
+    tipe: string;
+    created_at: string;   // Change 'String' to 'string'
 }
 
 const Dashboard: Component = () => {
@@ -143,6 +151,39 @@ const openFeedsPopUp = async (post_id: number) => {
   );
   
   //===================================================
+  const [getNotif, setGetNotif] = createSignal<GetNotifikasi>();
+onMount(async () => {
+    try {
+        const dataGetNotif = await fetchGetNotifikasi();
+        console.log("test_data_notifikasi", dataGetNotif)
+        if (dataGetNotif) {
+            setGetNotif((prevFolls) => dataGetNotif);
+        }
+    } catch (error) {
+        console.error("Error fetching Postingan", error);
+    }
+});
+
+
+//------------------------------------------------------
+  const formatTimeDifference = (createdAt: string) => {
+    const now = new Date();
+    const createdDate = new Date(createdAt.replace(' ', 'T')); // Assuming 'created_at' is in the format "2023-12-11 23:42:38.902"
+    const timeDifference = Math.floor((now.getTime() - createdDate.getTime()) / 1000); // in seconds
+
+    if (timeDifference < 60) {
+      return `${timeDifference} detik lalu`;
+    } else if (timeDifference < 3600) {
+      const minutes = Math.floor(timeDifference / 60);
+      return `${minutes} menit lalu`;
+    } else if (timeDifference < 86400) {
+      const hours = Math.floor(timeDifference / 3600);
+      return `${hours} jam lalu`;
+    } else {
+      const days = Math.floor(timeDifference / 86400);
+      return `${days} hari lalu`;
+    }
+  };
     return (
         <>
         <div class='body'>
@@ -218,14 +259,42 @@ const openFeedsPopUp = async (post_id: number) => {
                 </div>
 
                 <div class='statistik'>
+                  <div class='cont-stat'>
                     <div class='statistik-bar'>
-                    <Icon icon="ic:round-bar-chart" class='icon'/>
-                    <span>Statistik</span>
+                    <Icon icon="tdesign:notification-filled" class='icon'/>
+                    <span class='span-notif-judul'>Notifikasi</span>
                     </div>
                     <hr />
                     <div class='statistik-like'>
-                        <span>Like Count</span>
+                      <For each={(getNotif() || []) as GetNotifikasi[]}>
+                      {(notif) => (
+                        <div>
+                          <div class='cont-notif-side'>
+                            <div class='cont-img-notif'>
+                              <img src={`/src/assets/profile/${notif.gambar}`} alt="" />
+                            </div>
+                            <div class='nama-notif'>
+                              <span class='nama-akun-notif'>{notif.nama_akun}</span>
+                              {notif.tipe === 'New Like' && (
+                                <div class='activitynotif-side'>menyukai unggahan anda.</div>
+                              )}
+                              {notif.tipe === 'New Comment' && (
+                                <div class='activitynotif-side'>Mengomentari unggahan anda.</div>
+                              )}
+                              {notif.tipe === 'New Follower' && (
+                                <div class='activitynotif-side'>Mulai mengikuti anda.</div>
+                              )}
+                              <div class='time-notif'>
+                                {formatTimeDifference(notif.created_at)}
+                              </div>
+                            </div>
+                          </div>
+                          <hr />
+                        </div>
+                        )}
+                    </For>
                     </div>
+                  </div>
                 </div>
             </div>
             

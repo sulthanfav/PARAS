@@ -7,6 +7,18 @@
     overflow-X: hidden;
 }
 
+.cont-home::-webkit-scrollbar {
+    width: 12px;
+}
+
+.cont-home::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.cont-home::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
 .batas-home {
     width: 85vw;
     display: flex;
@@ -41,7 +53,7 @@
 
 .img-profile-post-home {
     width: 5vw;
-    height: 10vh;
+    height: 10.5vh;
     border-radius: 50%; /* Menggunakan 50% untuk bentuk bulat */
     overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari batas bulat */
     background-color: black;
@@ -107,7 +119,7 @@
 }
 
 .postan-home1, .postan-home2, .postan-home3, .postan-home4  {
-    margin: 2vw;
+    margin: 1vw;
     border: 2px solid #F5F0F0;
     padding: 1vw;
     border-radius: 10px;

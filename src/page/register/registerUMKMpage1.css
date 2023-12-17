@@ -343,7 +343,7 @@
 }
 
 .input-password {
-  font-size: 12px;
+  font-size: 14px;
   border: 1px solid var(--putih, #F5F0F0);
   width: 28.5vw;
   height: 5vh;
@@ -394,7 +394,7 @@
   --secondary-color: #fff;
   --hover-color: #706f6f;
   --arrow-width: 10px;
-  --arrow-stroke: 2px;
+  --arrow-stroke: 0px;
   box-sizing: border-box;
   border: 0;
   border-radius: 20px;

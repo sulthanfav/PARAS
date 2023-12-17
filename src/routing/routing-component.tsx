@@ -1,7 +1,8 @@
 import { lazy, type Component } from 'solid-js';
+import { createEffect } from 'solid-js';
 import { createSignal, onCleanup } from "solid-js";
 import { useStore } from '../integration-extension/store';
-import {Router, Routes, Route, hashIntegration, Navigate} from '@solidjs/router' ;
+import {Router, Routes, Route, hashIntegration, Navigate, useNavigate} from '@solidjs/router' ;
 import home_profile_umkm from '../page/home-personal/home_profile_umkm/home_profile_umkm';
 
 interface UserData {
@@ -60,7 +61,7 @@ const Popup_notif = lazy(() => import('../assets/popup/popup_notif/popup_notif')
 const Dashboard = lazy(() => import('../page/dashboard/dashboard_umkm'));
 //--------------ROUTE-PERSONAL---------------------
 const Home = lazy(() => import('../page/home-personal/home'));
-const Home_profile_umkm = lazy(() => import('../page/home-personal/home_profile_umkm/home_profile_umkm'));
+const Home_Profile_Umkm = lazy(() => import('../page/home-personal/home_profile_umkm/home_profile_umkm'));
 const ProfilUser = lazy(() => import('../page/profil_user/profil_user'));
 const DisukaiUser = lazy(() => import('../page/disukai/disukai'));
 const HomeSearchUser = lazy(() => import('../page/home_search/home_search'));
@@ -77,24 +78,45 @@ const Popup_hapus = lazy(() => import('../assets/popup/popup_hapus/popup_hapus')
 
 const Login = lazy(() => import('../page/login/login'));
 
-// const getPath = (e: any) => {
-//   return '/dashboard';
-// }
+const getPath = (e: any) => {
+  return '/BeforeLogin/Paras';
+}
 
 const Root: Component = () => {
-    const [{ sessionStore }] = useStore();
+    const navigate = useNavigate();
+  const [{ sessionStore }] = useStore();
 
-    const userDataString = sessionStore.sessionData as unknown as string; // Ensure sessionData is a string
-    const userData = JSON.parse(userDataString) as UserData; // Parse the JSON string to an object
-    const userAccess = userData.access;
+  createEffect(() => {
+    const userDataString = sessionStore.sessionData as unknown as string;
 
-    const getPath = () => {
-        if (userData.access === 'umkm') {
-            return "/umkm/dashboard";
-        }  else {
-            return "/personal/home";
-        }
+    if (!userDataString) {
+      // If there is no session data, user is not logged in
+      navigate('/BeforeLogin/Paras');
+    } else {
+      // User is logged in, extract user data and determine route
+      const userData = JSON.parse(userDataString) as UserData;
+      const userAccess = userData.access;
+
+      if (userAccess === 'umkm') {
+        navigate('/umkm/dashboard');
+      } else {
+        navigate('/personal/home');
+      }
     }
+  });
+    // const [{ sessionStore }] = useStore();
+
+    // const userDataString = sessionStore.sessionData as unknown as string; // Ensure sessionData is a string
+    // const userData = JSON.parse(userDataString) as UserData; // Parse the JSON string to an object
+    // const userAccess = userData.access;
+
+    // const getPath = () => {
+    //     if (userData.access === 'umkm') {
+    //         return "/umkm/dashboard";
+    //     }  else {
+    //         return "/personal/home";
+    //     }
+    // }
 
     return (
     <> 
@@ -102,12 +124,14 @@ const Root: Component = () => {
         <Routes>
             <Route path="/" element={ <Navigate href={getPath}/> } />
             {/* Rute sebelum login */}
-            <Route path="/Paras" component={ Paras } />
-            <Route path="/RegisterUMKMPage1" component={ RegisterUMKMPage1 } />
-            <Route path="/RegisterUMKMPage2" component={ RegisterUMKMPage2 } />
-            <Route path="/RegisterPersonalPage1" component={ RegisterPersonalPage1 } />
-            <Route path="/RegisterPersonalPage2" component={ RegisterPersonalPage2 } />
-            <Route path="/login" component={ Login } />
+            <Route path="/BeforeLogin">
+              <Route path="/Paras" component={ Paras } />
+              <Route path="/RegisterUMKMPage1" component={ RegisterUMKMPage1 } />
+              <Route path="/RegisterUMKMPage2" component={ RegisterUMKMPage2 } />
+              <Route path="/RegisterPersonalPage1" component={ RegisterPersonalPage1 } />
+              <Route path="/RegisterPersonalPage2" component={ RegisterPersonalPage2 } />
+              <Route path="/login" component={ Login } />
+            </Route>
 
             {/* Rute setelah login sebagai umkm*/}
             <Route path="/umkm" >
@@ -117,7 +141,7 @@ const Root: Component = () => {
               <Route path="/PengaturanIsiUMKM" component={ PengaturanIsiUMKM } />
               <Route path="/Folls" component={ Folls } />
               {/* <Route path="/Popup_feeds_edit" component={ <Popup_feeds_edit/> } /> */}
-              <Route path="/Home_profile_umkm" component={ Home_profile_umkm } />
+              
               <Route path="/EditProfilUMKM" component={ EditProfilUMKM } />
               <Route path="/ProfilUMKM" component={ ProfilUMKM } />
             </Route>
@@ -130,7 +154,7 @@ const Root: Component = () => {
               <Route path="/HomeSearchUser" component={ HomeSearchUser } />
               <Route path="/PengaturanUser" component={ PengaturanUser } />
               <Route path="/PengaturanUser2" component={ PengaturanUser2 } />
-              <Route path="/HomeProfileUmkm" component={ Home_profile_umkm } />
+              <Route path="/HomeProfileUmkm/:akun_id?" element={<Home_Profile_Umkm />} />
               {/* <Route path="/PopupLogoutUMKM" component={ <PopupLogoutUMKM/> } /> */}
               {/* <Route path="/LoginUMKM" component={ <LoginUMKM/> } /> */}
               {/* <Route path="/Popup_logout" component={ <Popup_logout/> } /> */}

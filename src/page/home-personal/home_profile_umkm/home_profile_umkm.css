@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
 .cont-home-profile-umkm {
     width: 85vw;
     height: 90vh;
@@ -5,21 +9,58 @@
     overflow-y: auto;
     overflow-X: hidden;
     margin-left: 15vw;
+    font-family: 'Monsterrat', sans-serif;
+}
+
+.cont-home-profile-umkm::-webkit-scrollbar {
+    width: 12px;
+}
+
+.cont-home-profile-umkm::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.cont-home-profile-umkm::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 .home-profile-umkm {
     width: 80.5vw;
-    height: auto;
-    border: 2px solid;
+    height: 80vh;
+    border: 5px solid #F5F0F0;
     margin-left: 2vw;
     border-radius: 15px;
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-X: hidden;
+    padding-left: 0.5vw;
+}
+
+.home-profile-umkm::-webkit-scrollbar {
+    width: 12px;
+}
+
+.home-profile-umkm::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.home-profile-umkm::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.home-profile-umkm hr {
+    background-color: #F5F0F0;
+    height: 4px;
+    border-radius: 10px;
+    color: #F5F0F0;
 }
 
 .profile-akun-home {
-    background-color: aqua;
     width: 78vw;
     height: 20vh;
     margin: 1vw;
+    display: flex;
+    align-items: center;
 }
 
 .home-profile-umkm .postan {
@@ -28,4 +69,52 @@
 
 .home-profile-umkm .postan .postan1 {
     width: 17.5vw;
+}
+
+.profile-akun-umkm {
+    width: 9vw;
+    height: 18vh;
+    border-radius: 100%;
+    background-color: bisque;
+    margin-left: 1vw;
+}
+
+.profile-akun-umkm img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+}
+
+.cont-nama-usn-desc {
+    width: 55vw;
+    height: 18vh;
+    margin-left: 1vw;
+}
+
+.nama-akun-prof {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 1vw;
+}
+
+.usn-akun-prof {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.follow-akun-cont {
+    width: 12vw;
+    height: 18vh;
+}
+
+.follow-akun {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11vw;
+    height: 5vh;
+    border: 4px solid #F5F0F0;
+    border-radius: 15px;
+    padding: 0.5vw;
 }

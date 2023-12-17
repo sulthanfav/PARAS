@@ -8,7 +8,21 @@ import { A, useNavigate } from '@solidjs/router';
 // import LogoImage from './logo.tsx';
 
 const Paras: Component = () => {
-      
+        const navigate = useNavigate();
+
+  const handleUMKMButtonClick = () => {
+    // Save 'umkm' to sessionStorage
+    sessionStorage.setItem('registrationType', 'umkm');
+    // Redirect to the UMKM registration page
+    navigate('/BeforeLogin/RegisterUMKMPage1');
+  };
+
+  const handleUserButtonClick = () => {
+    // Save 'pengguna' to sessionStorage
+    sessionStorage.setItem('registrationType', 'pengguna');
+    // Redirect to the User registration page
+    navigate('/BeforeLogin/RegisterPersonalpage1');
+  };
     return (
     <>
     <div class='body'>
@@ -18,7 +32,7 @@ const Paras: Component = () => {
         </A>
             <div class = 'button-navigation-bar'>
                 <button class = 'btn-daftar'> Daftar </button>
-                <A href="/login">
+                <A href="/BeforeLogin/login">
                 <button class = 'btn-masuk'> Masuk </button>
                 </A>
             </div>
@@ -35,8 +49,12 @@ const Paras: Component = () => {
                         </span> 
                     </div>
                     <div class = 'button-daftar'>
-                        <A href="/RegisterUMKMPage1"><button class="btn btn-active btn-neutral">Daftar sebagai UMKM</button></A>
-                        <A href="/RegisterPersonalpage1"><button class="btn btn-ghost">Daftar sebagai User</button></A>
+                        <button onClick={handleUMKMButtonClick} class="btn btn-active btn-neutral">
+                        Daftar sebagai UMKM
+                        </button>
+                        <button onClick={handleUserButtonClick} class="btn btn-ghost">
+                        Daftar sebagai User
+                        </button>
                     </div>
                     <div class = 'text-tagline'>
                     Jadikan galeri dagangan Anda di sini, 

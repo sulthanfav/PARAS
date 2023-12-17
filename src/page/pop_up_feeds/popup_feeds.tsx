@@ -10,10 +10,12 @@ import { fetchPostingan, Postingan, PostinganPersonal } from '../../api/postinga
 import { fetchPostinganSelected, PostinganSelected, GambarSelected } from '../../api/postinganselected';
 import { KomentarPostingan, fetchKomentarPostingan } from '../../api/komentar';
 
+
 interface PopUpFeedsProps {
   onClose: () => void;
   postinganselect: Postingan | PostinganPersonal | null;
   postId: number | null;
+  
 }
 
 
@@ -88,7 +90,78 @@ const formatTimeDifference = (createdAt?: string) => {
   }
 };
 
+  const navigate = useNavigate();
 
+  const deletePostingan = async () => {
+    const post_id = props.postId;
+    if (post_id !== null) {
+      try {
+        // Perform the delete operation using the API endpoint
+        await fetch(`/api/postingan/delete/${post_id}`, {
+          method: 'DELETE',
+        });
+
+        alert('Postingan berhasil dihapus.');
+        // Close the popup after successful deletion
+        props.onClose();
+
+        // Navigate to the new page
+        navigate('/umkm/dashboard');
+
+        // Reload the current page to reflect changes
+        window.location.reload();
+      } catch (error) {
+        console.error('Error deleting postingan:', error);
+      }
+    } else {
+      console.error('post_id is null');
+    }
+  };
+
+//===============================================
+const [commentText, setCommentText] = createSignal<string>(''); // Add this line for state
+  const submitComment = async (commentText: string) => {
+    const post_id = props.postId;
+
+    if (post_id !== null) {
+      try {
+        // Retrieve umkm_id from sessionStorage
+        const userData = sessionStorage.getItem('userData');
+        const umkm_id = userData ? JSON.parse(userData).akun_id : null;
+
+        const commentData = {
+          umkm_id: umkm_id ? parseInt(umkm_id, 10) : null,
+          komentar_id: null, // Leave it as null
+          pengguna_id: null, // Leave it as null
+          post_id: post_id,
+          isi: commentText,
+          create_at: null,
+        };
+
+        console.log('Comment Data:', commentData);
+
+        // Perform the POST request to the API endpoint
+        const response = await fetch('/api/komentar/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(commentData),
+        });
+
+        if (response.ok) {
+          // Comment submitted successfully, you might want to update the UI or do something else
+          console.log('Comment submitted successfully');
+        } else {
+          console.error('Failed to submit comment:', response.status);
+        }
+      } catch (error) {
+        console.error('Error submitting comment:', error);
+      }
+    } else {
+      console.error('post_id is null');
+    }
+  };
 
   return (
     <>
@@ -105,7 +178,7 @@ const formatTimeDifference = (createdAt?: string) => {
             <SliderProvider>
               <div class='cont-pic'>
               <div class="">
-                <SliderButton prev class="">
+                <SliderButton prev class='button-slide'>
                   &lt;
                 </SliderButton>
               </div>
@@ -121,7 +194,7 @@ const formatTimeDifference = (createdAt?: string) => {
                 </Slider>
               </div>
               <div class="next">
-                <SliderButton next class=''>
+                <SliderButton next class='button-slide'>
                   &gt;
                 </SliderButton>
               </div>
@@ -140,10 +213,7 @@ const formatTimeDifference = (createdAt?: string) => {
           </div>
           <hr />
           <div class='edit-feeds'>
-            <div class='ubah-feeds'>
-              <span>Ubah Feeds</span>
-            </div>
-            <div class='hapus-feeds'>
+            <div class='hapus-feeds' onClick={deletePostingan}>
               <span>Hapus Feeds</span>
             </div>
           </div>
@@ -154,34 +224,53 @@ const formatTimeDifference = (createdAt?: string) => {
         <Icon icon="ep:close-bold" class='feeds-icon-exit' onclick={props.onClose}></Icon>
       </div>
       <div class='comment-sec-cont'>
-<For each={resultKomentar()}>
-  {(komentar) => (
-        <div class='comment'>
-          <div class='comment-pic'>
-            {/* You might want to use the actual image from the 'komentar' object */}
-            <img src={`/src/assets/profile/${komentar.gambar}`} alt="" />
-          </div>
-          <div class='comment-nama-isi'>
-            <div class='comment-nama'>
-              {komentar.nama_akun}
-            </div>
-            <div class='comment-isi'>
-              {komentar.isi}
-            </div>
-            <div class='comment-time'>
-              {/* You might want to format the date here */}
-              {formatTimeDifference(komentar.create_at || '')}
-
-            </div>
-          </div>
+        <div class='comment-cont-overflow'> 
+        {(resultKomentar() ?? []).length > 0 ? (
+          <For each={resultKomentar() || []}>
+            {(komentar) => (
+              <div class='comment'>
+                <div class='comment-pic'>
+                  {/* You might want to use the actual image from the 'komentar' object */}
+                  <img src={`/src/assets/profile/${komentar.gambar}`} alt="" />
+                </div>
+                <div class='comment-nama-isi'>
+                  <div class='comment-nama'>
+                    {komentar.nama_akun}
+                  </div>
+                  <div class='comment-isi'>
+                    {komentar.isi}
+                  </div>
+                  <div class='comment-time'>
+                    {/* You might want to format the date here */}
+                    {formatTimeDifference(komentar.create_at || '')}
+                  </div>
+                </div>
+              </div>
+            )}
+          </For>
+        ) : (
+          <div class="no-comment">Tidak Ada Komentar</div>
+        )}
         </div>
-      )}
-    </For>
-        <div class='comment-inp-cont'>
-          <Icon icon="iconamoon:comment-fill" class='icon-intr-feeds'></Icon>
-          <input type="text" />
-          <Icon icon="mingcute:send-fill" class='icon-intr-feeds'></Icon>
-        </div>
+      <div class='comment-inp-cont'>
+        <Icon icon="iconamoon:comment-fill" class='icon-intr-feeds'></Icon>
+        <input
+          type='text'
+          class='inputan-comment'
+          onInput={(e) => setCommentText(e.currentTarget.value)}
+          value={commentText()}
+        />
+        <Icon
+          icon="mingcute:send-fill"
+          class='icon-intr-feeds'
+          onClick={() => {
+            if (commentText().trim() !== '') {
+              submitComment(commentText());
+              setCommentText(''); // Reset the commentText after submission
+            }
+          }}
+        ></Icon>
+      </div>
       </div>
     </div>
 

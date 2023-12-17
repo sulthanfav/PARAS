@@ -46,6 +46,21 @@ export type BiodataPersonal = {
   gambar: string;
 };
 
+export type AkunUmkmHome = {
+  nama_akun: string;
+  email: string;
+  access: string;
+  username: string;
+};
+
+export type AkunUmkmHomeSearch = {
+  nama_akun: string;
+  email: string;
+  access: string;
+  username: string;
+  gambar: string
+};
+
 
 //===================================================
 export async function fetchBiodataUmkm() {
@@ -72,6 +87,68 @@ export async function fetchBiodataUmkm() {
   sessionStorage.setItem("biodataUmkm", JSON.stringify(biodataUmkm));
 
   return biodataUmkm;
+}
+//===================================================
+export async function fetchAkunUmkmSearch() {
+  const searchInput = sessionStorage.getItem("searchInput");
+
+  if (!searchInput) {
+    return null;
+  }
+
+  const searchInputKey = searchInput;
+
+  if (!searchInputKey) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`/api/account/akunumkm/search/${searchInputKey}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const AkunUmkmSearch = await response.json() as AkunUmkmHomeSearch[];
+    console.log(AkunUmkmSearch);
+
+    sessionStorage.setItem("AkunUmkmSearch", JSON.stringify(AkunUmkmSearch));
+
+    return AkunUmkmSearch;
+  } catch (error) {
+    console.error("Error fetching AkunUmkmSearch", error);
+    return null;
+  }
+}
+
+//===================================================
+export async function fetchBiodataUmkmHome(akun_id?: number) {
+  if (!akun_id) {
+    // Handle the case where akun_id is not available in userData
+    return null;
+  }
+
+  const response = await fetch(`/api/biodata_umkm/${akun_id}`);
+  const biodataUmkm = await response.json() as BiodataUmkm;
+  console.log(biodataUmkm);
+
+  return biodataUmkm;
+}
+//===================================================
+export async function fetchAkunUmkmHome(akun_id?: number) {
+
+  // const akun_id = userData?.akun_id;
+
+  if (!akun_id) {
+    // Handle the case where akun_id is not available in userData
+    return null;
+  }
+
+  const response = await fetch(`/api/account/akunumkm/${akun_id}`);
+  const AkunUmkmHome = await response.json() as AkunUmkmHome;
+  console.log(AkunUmkmHome);
+
+  return AkunUmkmHome;
 }
 //===================================================
 export async function fetchBiodataPersonal() {
