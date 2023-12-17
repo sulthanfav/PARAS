@@ -8,11 +8,8 @@ import { BiodataPersonal, fetchBiodataPersonal } from "../../api/akun";
 import { CountFollsPersonal, fetchCountFollsPersonal } from "../../api/followers";
 import Popup_logout from "../../assets/popup/popup_logout/popup_logout";
 import '../home-personal/home.css'
-
-const pathFn = (e: any) => {
-    console.log('pathFn', e);
-    return '/ProfilUser';
-  }
+import '../profil_umkm/profil_umkm.css'
+import '../disukai/disukai.css'
 
 const ProfilUser: Component = () => {
 
@@ -145,29 +142,24 @@ const [logout, setLogout] = createSignal(false);
 
               <div class='bodycontent-profile'>
                 <div class='bodyform'>
-                  <div class='form-profile'>Nama Toko</div>
-                  <div><input type="text" placeholder="Numani" class="isianprofile input input-bordered w-full max-w-xs" /></div>
-                </div>
-                <div class='bodyform'>
                   <div class='form-profile'>Kategori Usaha</div>
-                  <div><input type="text" placeholder="Produk Makanan dan Minuman" class="isianprofile input input-bordered w-full max-w-xs" /></div>
+                  <div class="profile-isi">
+                    <span>{biodataPersonal().map((ttl) => ttl.tempat_tanggal_lahir)}</span>
+                  </div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>Nomor Kontak</div>
-                  <div><input type="text" placeholder="021123456789" class="isianprofile input input-bordered w-full max-w-xs" /></div>
+                  <div class="profile-isi">
+                    <span>{biodataPersonal().map((alamat) => alamat.alamat)}</span>
+                  </div>
                 </div>
                 <div class='bodyform'>
                   <div class='form-profile'>NIB (Nomor Induk Berusaha)</div>
-                  <div><input type="text" placeholder="021123456789" class="isianprofile input input-bordered w-full max-w-xs" /></div>
+                  <div class="profile-isi">
+                    <span>{biodataPersonal().map((jenis_kelamin) => jenis_kelamin.jenis_kelamin)}</span>
+                  </div>
                 </div>
-                <div class='bodyform'>
-                  <div class='form-profile'>Deskripsi Toko</div>
-                  <div><input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue porta purus vitae gravida." class="isianprofile-panjang input input-bordered w-full max-w-xs" /></div>
-                </div>
-                <div class='bodyform'>
-                  <div class='form-profile'>Alamat Toko</div>
-                  <div><input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue porta purus vitae gravida." class="isianprofile-panjang input input-bordered w-full max-w-xs" /></div>
-                </div>
+                
               </div>
             </div>
           </div>

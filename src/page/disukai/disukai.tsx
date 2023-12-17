@@ -11,7 +11,8 @@ import '../home-personal/home.css'
 import {  fetchPostinganByLike,  PostinganPersonal, GambarPersonal } from '../../api/postingan';
 import '../dashboard/dashboard_umkm.css'
 import '../home-personal/home_profile_umkm/home_profile_umkm.css'
-
+import { fetchPostinganPersonalSelected, PostinganPersonalSelected } from "../../api/postinganselected";
+import Popup_feeds_personal from "../../assets/popup/popuup_postingan_personal/popup_postingan_personal";
 
 const DisukaiUser: Component = () => {
 //=======================================
@@ -102,6 +103,31 @@ const [logout, setLogout] = createSignal(false);
     </div>
   );
 
+  //=====================================================================
+   //=====================================
+    const [FeedsPersonal, setFeedsPersonal] = createSignal(false);
+  const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
+const [selectedPost, setSelectedPost] = createSignal<PostinganPersonalSelected | null>(null);
+
+const openFeedsPopUp = async (post_id: number | null, akun_id: number | null) => {
+  if (post_id !== null) {
+    try {
+      const result = await fetchPostinganPersonalSelected(post_id);
+      setSelectedPost(result);
+      setFeedsPersonal(true);
+    } catch (error) {
+      console.error("Error fetching selected post", error);
+    }
+  }
+};
+
+
+
+  const closeFeedsPopUp = () => {
+    setFeedsPersonal(false);
+    setSelectedPostId(null);
+  }; 
+
 
     return (
         <>
@@ -155,7 +181,7 @@ const [logout, setLogout] = createSignal(false);
                 <div class='main'>
                     <div class='postan'>
                         <For each={postingan()} fallback={<div class="pinwheel"><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div><div class="pinwheel__line"></div></div>}>{(post: PostinganPersonal) => (
-                            <div class={`postan${post.gambar.length}`}>
+                            <div class={`postan${post.gambar.length}`} onClick={() => {setSelectedPostId(post?.post_id ?? null); openFeedsPopUp(post?.post_id ?? null, post?.akun_id ?? null);}}>
                             <div class='headline'>
                             <span class='judul'>{post.nama}</span>
                             <Icon class='icon-menu-post' icon="charm:menu-kebab"></Icon> <br />
@@ -164,6 +190,7 @@ const [logout, setLogout] = createSignal(false);
                             {renderGambar(post.gambar, '/src/assets/postingan')}
                         </div>
                         )}</For>
+                        {FeedsPersonal() && <Popup_feeds_personal onClose={closeFeedsPopUp} postId={selectedPostId()} postinganselect={selectedPost()} akun_id={selectedPost()?.akun_id || null} />}
                     </div>
                 </div>
                 </div>

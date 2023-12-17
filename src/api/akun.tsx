@@ -58,7 +58,8 @@ export type AkunUmkmHomeSearch = {
   email: string;
   access: string;
   username: string;
-  gambar: string
+  gambar: string;
+  akun_id: number;
 };
 
 

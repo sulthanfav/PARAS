@@ -9,7 +9,8 @@ import Popup_logout from '../../assets/popup/popup_logout/popup_logout';
 import { fetchBiodataPersonal, AkunUmkmHomeSearch, fetchAkunUmkmSearch } from '../../api/akun';
 import { fetchCountFollsPersonal } from '../../api/followers';
 import { GambarSearch, PostinganSearch, fetchPostinganSearch } from '../../api/postingan';
-
+import { PostinganPersonalSelected, fetchPostinganPersonalSelected } from '../../api/postinganselected';
+import Popup_feeds_personal from '../../assets/popup/popuup_postingan_personal/popup_postingan_personal';
 
 const HomeSearchUser: Component = () => {
 
@@ -161,7 +162,31 @@ const getKeyInput = () => {
     setLikeClicked((prev) => !prev);
     // Perform other like-related actions as needed
   };
-  
+
+  //=====================================
+    const [FeedsPersonal, setFeedsPersonal] = createSignal(false);
+  const [selectedPostId, setSelectedPostId] = createSignal<number | null>(null);
+const [selectedPost, setSelectedPost] = createSignal<PostinganPersonalSelected | null>(null);
+
+const openFeedsPopUp = async (post_id: number | null, akun_id: number | null) => {
+  if (post_id !== null) {
+    try {
+      const result = await fetchPostinganPersonalSelected(post_id);
+      setSelectedPost(result);
+      setFeedsPersonal(true);
+    } catch (error) {
+      console.error("Error fetching selected post", error);
+    }
+  }
+};
+
+
+
+  const closeFeedsPopUp = () => {
+    setFeedsPersonal(false);
+    setSelectedPostId(null);
+  }; 
+
     return (
         <>
             <div class='body'>
@@ -215,7 +240,7 @@ const getKeyInput = () => {
                                 <For each={(AkunUmkm() || []) as AkunUmkmHomeSearch[]}>
                                 {(AkunUmkm) => (
                                 <div class="cont-profile-result">
-                                    <div class='profile-post-home'>
+                                    <div class='profile-post-home' onClick={() => navigate(`/personal/HomeProfileUmkm/${AkunUmkm.akun_id}`)}>
                                         <div class='img-profile-post-home'>
                                             <img src={`/src/assets/profile/${AkunUmkm.gambar}`} alt="" />
                                         </div>
@@ -237,9 +262,7 @@ const getKeyInput = () => {
 
                                     <For each={postingan()} fallback={<div class='no-unggahan-search'>Tidak Ada Unggahan Untuk Kata Kunci Tersebut</div>}>{(post: PostinganSearch) => (
                             // <div class='post-home'>
-                                <div class={`postan-home${post.gambar.length}`} >
-
-
+                                <div class={`postan-home${post.gambar.length}`} onClick={() => {setSelectedPostId(post?.post_id ?? null); openFeedsPopUp(post?.post_id ?? null, post?.akun_id ?? null);}}>
                                 <div class='profile-post-home'>
                                     <div class='img-profile-post-home'>
                                         <img src={`/src/assets/profile/${post.gambar_profile}`} alt="" />
@@ -271,6 +294,7 @@ const getKeyInput = () => {
                                 </div>
                             // </div>
                                 )}</For>
+                                {FeedsPersonal() && <Popup_feeds_personal onClose={closeFeedsPopUp} postId={selectedPostId()} postinganselect={selectedPost()} akun_id={selectedPost()?.akun_id || null} />}
 
                             </div>
 

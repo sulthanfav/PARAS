@@ -276,6 +276,10 @@
     margin: 0.5vw;
 }
 
+.profile-post-home {
+    cursor: pointer;
+}
+
 .cont-profile-result hr{
         color: #F5F0F0;
         height: 2px;
